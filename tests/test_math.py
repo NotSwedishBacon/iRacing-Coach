@@ -197,3 +197,108 @@ def test_track_sector_premapped_and_auto_segmentation() -> None:
     auto_corners = auto_segment_corners(ref["distance_m"], ref["lat_accel_g"], ref["speed"])
     assert len(auto_corners) == 1
     assert abs(auto_corners[0].nominal_apex_m - 150.0) <= 2.0
+
+
+def test_phase_time_loss_and_braking_point_offset_and_trail_overlap() -> None:
+    """Verify spatial phase time loss decomposition, early/late braking flags, and trail-brake overlap integral."""
+    ref = make_reference_corner_lap()
+    user_early = make_reference_corner_lap()
+
+    s = user_early["distance_m"]
+    # User brakes 18m early at s=42m (with sharp initial rise so lazy_brake_hit is not triggered),
+    # releases brake completely before turn-in (s=75m), and runs 4 m/s slower through entry & apex
+    user_early["brake"] = np.zeros_like(s)
+    user_early["brake"][(s >= 42.0) & (s < 44.0)] = np.linspace(0.05, 0.90, np.sum((s >= 42.0) & (s < 44.0)))
+    user_early["brake"][(s >= 44.0) & (s <= 72.0)] = np.linspace(0.90, 0.02, np.sum((s >= 44.0) & (s <= 72.0)))
+    user_early["speed"] = user_early["speed"] - 4.0
+
+    report_early = analyze_telemetry(user_early, ref, segments=SINGLE_CORNER)
+    c_early = report_early["corners"][0]
+
+    assert c_early["brake_point_offset_m"] <= -15.0
+    assert c_early["early_braking_overslow"] is True
+    assert c_early["missing_trail_brake_overlap"] is True
+    assert c_early["time_loss_total_s"] > 0.20
+    assert len(report_early["top_time_loss_corners"]) == 1
+
+    # Late braking overshoot test
+    user_late = make_reference_corner_lap()
+    user_late["brake"] = np.zeros_like(s)
+    user_late["brake"][(s >= 74.0) & (s < 76.0)] = np.linspace(0.05, 0.90, np.sum((s >= 74.0) & (s < 76.0)))
+    user_late["brake"][(s >= 76.0) & (s <= 150.0)] = np.linspace(0.90, 0.10, np.sum((s >= 76.0) & (s <= 150.0)))
+    user_late["speed"][(s >= 120.0) & (s <= 180.0)] -= 3.0
+
+    report_late = analyze_telemetry(user_late, ref, segments=SINGLE_CORNER)
+    c_late = report_late["corners"][0]
+    assert c_late["brake_point_offset_m"] >= 12.0
+    assert c_late["late_braking_overshoot"] is True
+
+
+def test_steering_sawing_throttle_pumping_and_countersteer() -> None:
+    """Verify mid-corner steering sawing reversals, post-apex throttle pumping, and counter-steer detection."""
+    ref = make_reference_corner_lap()
+    user = make_reference_corner_lap()
+    s = user["distance_m"]
+
+    # 1. Inject sinusoidal sawing (+-4 deg oscillation every 6m) between turn-in (s=80m) and apex (s=150m)
+    mid_mask = (s >= 80.0) & (s <= 150.0)
+    user["steering_deg"][mid_mask] += 4.0 * np.sin((s[mid_mask] - 80.0) * (2.0 * np.pi / 12.0))
+
+    # 2. Inject post-apex throttle pumping (ramp to 60%, drop to 20%, ramp to 100%)
+    user["throttle"][(s >= 151.0) & (s <= 165.0)] = np.linspace(0.10, 0.60, np.sum((s >= 151.0) & (s <= 165.0)))
+    user["throttle"][(s > 165.0) & (s <= 175.0)] = np.linspace(0.55, 0.20, np.sum((s > 165.0) & (s <= 175.0)))
+    user["throttle"][(s > 175.0) & (s <= 215.0)] = np.linspace(0.25, 1.0, np.sum((s > 175.0) & (s <= 215.0)))
+
+    # 3. Inject 10 meters of opposite-lock counter-steering on exit (s=175..185m) while lat_accel_g > 0.5G
+    cs_mask = (s >= 175.0) & (s <= 185.0)
+    user["steering_deg"][cs_mask] = -18.0
+    user["lat_accel_g"][cs_mask] = 0.85
+
+    report = analyze_telemetry(user, ref, segments=SINGLE_CORNER)
+    corner = report["corners"][0]
+
+    assert corner["steering_sawing"] is True
+    assert corner["user_steering_reversals"] >= 4
+    assert corner["throttle_pumping"] is True
+    assert corner["user_throttle_hesitation_pct"] > 30.0
+    assert corner["snap_oversteer_countersteer"] is True
+    assert corner["countersteer_distance_m"] >= 10.0
+
+
+def test_v_vs_u_exit_compromise_grip_utilization_and_optional_channels() -> None:
+    """Verify over-charged apex exit compromise, grip utilization %, ABS intervention, and late downshifts."""
+    ref = make_reference_corner_lap()
+    user = make_reference_corner_lap()
+    s = user["distance_m"]
+
+    # Add optional channels to both ref and user
+    ref["abs_active"] = np.zeros_like(s)
+    ref["gear"] = np.where(s < 85.0, 4, 2)
+
+    user["abs_active"] = np.zeros_like(s)
+    # User triggers ABS for 25 meters during braking (s=65..90m)
+    user["abs_active"][(s >= 65.0) & (s <= 90.0)] = 1.0
+
+    # User downshifts late: 4 -> 3 at s=75m, then 3 -> 2 at s=110m (30m after turn-in)
+    user["gear"] = np.full_like(s, 4.0)
+    user["gear"][(s >= 75.0) & (s < 110.0)] = 3.0
+    user["gear"][s >= 110.0] = 2.0
+
+    # Over-charged entry / compromised exit: user carries +2.0 m/s higher minimum speed at apex (s=150m),
+    # delays full throttle by +25m, and exits 3.0 m/s slower at s=300m
+    user["speed"] = 37.0 + 28.0 * np.square((s - 150.0) / 150.0)
+    user["speed"][s >= 180.0] -= 4.5 * ((s[s >= 180.0] - 180.0) / 120.0)
+    user["throttle"][(s >= 151.0) & (s <= 250.0)] = np.linspace(0.08, 0.95, np.sum((s >= 151.0) & (s <= 250.0)))
+
+    report = analyze_telemetry(user, ref, segments=SINGLE_CORNER)
+    corner = report["corners"][0]
+
+    assert corner["overslow_exit_compromise"] is True
+    assert corner["corner_line_style"] == "overcharged_entry_compromised_exit"
+    assert corner["excessive_abs_intervention"] is True
+    assert corner["user_abs_active_distance_m"] >= 25.0
+    assert corner["late_mid_corner_downshift"] is True
+    assert corner["user_late_downshifts_after_turn_in"] >= 1
+    assert corner["user_grip_utilization_pct"] > 0.0
+    assert corner["ref_grip_utilization_pct"] > 0.0
+

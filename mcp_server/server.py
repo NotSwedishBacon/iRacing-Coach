@@ -42,11 +42,12 @@ def _infer_clean_lap_balance_symptom(analysis: dict[str, Any]) -> tuple[str, str
     # Identify corner with largest speed deficit relative to reference
     slowest_corner = min(corners, key=lambda c: float(c.get("delta_v_min", 0.0)))
     scrub = float(slowest_corner.get("steering_scrub_delta_deg", 0.0))
+    us_delta = float(slowest_corner.get("understeer_index_delta", 0.0))
     exit_steer = float(slowest_corner.get("user_exit_steering_at_50pct_throttle_deg", 0.0))
 
-    if scrub > 4.0:
+    if scrub > 4.0 or us_delta > 0.15:
         return ("mid", "understeer")
-    if exit_steer > 15.0:
+    if exit_steer > 15.0 or us_delta < -0.15:
         return ("exit", "oversteer")
     return ("entry", "understeer")
 
@@ -134,6 +135,7 @@ def analyze_last_session(
         "flaws": math_report["flaws"],
         "corners": math_report["corners"],
         "summary_deltas": math_report["summary_deltas"],
+        "top_time_loss_corners": math_report.get("top_time_loss_corners", []),
         "setup_recommendations": setup_recommendations,
         "persona_system_prompt": RACE_ENGINEER_SYSTEM_PROMPT,
     }

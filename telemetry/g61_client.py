@@ -792,6 +792,10 @@ COLUMN_ALIASES: dict[str, tuple[str, ...]] = {
     "steering_deg": ("steering_deg", "SteeringWheelAngle", "Steer", "steering", "delta_deg"),
     "lat_accel_g": ("lat_accel_g", "LatAccel", "ay", "lat_g", "G_lat"),
     "lon_accel_g": ("lon_accel_g", "LongAccel", "ax", "lon_g", "G_lon"),
+    "yaw_rate_rad_s": ("yaw_rate_rad_s", "YawRate", "yaw_rate", "psi_dot"),
+    "abs_active": ("abs_active", "BrakeABSactive", "ABSActive", "ABS", "abs"),
+    "gear": ("gear", "Gear", "gear_num"),
+    "rpm": ("rpm", "RPM", "EngineRPM"),
 }
 
 
