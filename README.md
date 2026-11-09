@@ -164,3 +164,12 @@ Run the synthetic telemetry math and MCP server test suite with `pytest`:
 ```bash
 .venv/bin/pytest -v
 ```
+
+---
+
+## ❤️ Acknowledgments & Special Thanks — Martin Crisp
+
+> **This project would not be possible without the extensive and tireless research and work by [Martin Crisp](https://learnsetup.gitbook.io/learn-car-setup-for-iracing).**
+>
+> All vehicle setup theory, weight-transfer fundamentals, and handling cheat-sheet recommendations powering this server's RAG knowledge base are drawn from his comprehensive guide, **[Learn Car Setup for iRacing](https://learnsetup.gitbook.io/learn-car-setup-for-iracing)**. We thank him enormously for his generosity and lasting contributions to the sim racing community.
+
