@@ -15,7 +15,9 @@ iracing-engineer-mcp/
 ├── .env.example
 ├── config.py
 ├── data/
-│   └── gitbook_docs/         # Complete 18-page Markdown corpus from learnsetup.gitbook.io
+│   ├── gitbook_docs/         # Complete 18-page Markdown corpus from learnsetup.gitbook.io
+│   ├── gitbook_chunks.json   # Pre-chunked & metadata-tagged corpus (139 chunks)
+│   └── chroma_db/            # Pre-ingested ChromaDB vector store (`all-MiniLM-L6-v2`)
 ├── scraper/
 │   └── ingest_rag.py         # Markdown ## / ### / #### chunker & metadata classifier
 ├── telemetry/
