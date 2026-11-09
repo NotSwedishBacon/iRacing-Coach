@@ -88,17 +88,25 @@ Each chunk is tagged with:
 
 Both the user's latest lap and the fastest comparison lap (team lap first, falling back to fastest clean public lap) are interpolated onto a common **1.0-meter spatial distance axis** $s \in [0, \text{TrackLength}]$ using `scipy.interpolate.interp1d`.
 
-For every corner sector, the engine computes 7 deterministic metrics:
+For every corner sector, the engine computes **15 deterministic physics checks & metrics**:
 
-| Check | Mathematical Definition | Fault Threshold | Flagged Diagnosis |
+| Check / Metric | Mathematical Definition | Fault Threshold / Output | Flagged Diagnosis |
 | :--- | :--- | :--- | :--- |
-| **Braking Rate** | Initial rise time $\Delta t_{\text{rise}}$ to reach $\ge 80\%$ brake pressure | `user_rise > ref_rise + 0.10s` | `lazy brake hit` (`lazy_brake_hit`) |
-| **Trail-Off Gradient** | Peak release rate $\left|\frac{d\,\text{Brake}}{ds}\right|$ between turn-in and apex | `> 10%/m` release rate vs smooth bleed | `abrupt brake release unweighting front axle` (`trail_off_warning`) |
-| **Coasting / Hesitation** | Contiguous meters where `Brake < 0.05` and `Throttle < 0.05` | `user_coast > ref_coast + 8.0m` | `dead-time coasting` (`dead_time_coasting`) |
-| **Friction Circle (G-Sum)** | Combined acceleration $G_{\text{total}} = \sqrt{a_x^2 + a_y^2}$ in transition | $G_{\text{total}} < 1.0\text{G}$ during pedal transition | `G-sum sag during pedal transition` (`g_sum_sag`) |
-| **Steering Scrub Index** | Excess lock $\Delta \delta = |\delta_{\text{user}}| - |\delta_{\text{ref}}|$ from turn-in to apex | $\Delta \delta > 12^\circ$ and $v_{\text{min, user}} < v_{\text{min, ref}}$ | `steering scrub / thermal understeer` (`steering_scrub`) |
-| **Apex Delta** | Minimum speed delta $\Delta v_{\text{min}}$ and spatial offset $\Delta s_{\text{apex}}$ | $\Delta s_{\text{apex}} < -10.0\text{m}$ | `early apex pinch choking exit` (`early_apex_pinch`) |
-| **Exit Traction** | Steering wheel angle $|\delta|$ when throttle crosses $50\%$ | $|\delta| > 25^\circ$ | `premature throttle application with excessive lock` (`premature_throttle_lock`) |
+| **1. Braking Rate** | Initial rise time $\Delta t_{\text{rise}}$ to reach $\ge 80\%$ brake pressure | `user_rise > ref_rise + 0.10s` | `lazy brake hit` (`lazy_brake_hit`) |
+| **2. Trail-Off Gradient** | Peak release rate $\left|\frac{d\,\text{Brake}}{ds}\right|$ between turn-in and apex | `> 10%/m` release rate vs smooth bleed | `abrupt brake release unweighting front axle` (`trail_off_warning`) |
+| **3. Coasting / Hesitation** | Contiguous meters where `Brake < 0.05` and `Throttle < 0.05` | `user_coast > ref_coast + 8.0m` | `dead-time coasting` (`dead_time_coasting`) |
+| **4. Friction Circle (G-Sum)** | Combined acceleration $G_{\text{total}} = \sqrt{a_x^2 + a_y^2}$ in transition | $G_{\text{total}} < 1.0\text{G}$ during pedal transition | `G-sum sag during pedal transition` (`g_sum_sag`) |
+| **5. Steering Scrub Index** | Excess lock $\Delta \delta = |\delta_{\text{user}}| - |\delta_{\text{ref}}|$ from turn-in to apex | $\Delta \delta > 12^\circ$ and $v_{\text{min, user}} < v_{\text{min, ref}}$ | `steering scrub / thermal understeer` (`steering_scrub`) |
+| **6. Apex Delta** | Minimum speed delta $\Delta v_{\text{min}}$ and spatial offset $\Delta s_{\text{apex}}$ | $\Delta s_{\text{apex}} < -10.0\text{m}$ | `early apex pinch choking exit` (`early_apex_pinch`) |
+| **7. Exit Traction** | Steering wheel angle $|\delta|$ when throttle crosses $50\%$ | $|\delta| > 25^\circ$ | `premature throttle application with excessive lock` (`premature_throttle_lock`) |
+| **8. Phase Time Loss ($\Delta t$)** | Spatial integral $\int_{s_1}^{s_2} \left(\frac{1}{v_{\text{user}}(s)} - \frac{1}{v_{\text{ref}}(s)}\right) ds$ | Entry, Mid, Exit, and Straight Carry $\Delta t$, plus top 3 time-loss corners | `time_loss_entry_s`, `time_loss_mid_s`, `time_loss_exit_s`, `time_loss_straight_s` |
+| **9. Braking Point & Trail Overlap** | Onset offset $\Delta s_{\text{brake}}$ and overlap integral $I_{\text{trail}} = \int \text{Brake}(s)\cdot |a_y(s)|\,ds$ | $\Delta s_{\text{brake}} < -12\text{m}$ (early), $> +10\text{m}$ (late), or $I_{\text{trail}} < 0.35\,I_{\text{ref}}$ | `early_braking_overslow`, `late_braking_overshoot`, `missing_trail_brake_overlap` |
+| **10. Steering Smoothness / Sawing** | RMS steering rate $\sqrt{\frac{1}{N}\sum (d\delta/dt)^2}$ and direction reversals | $\ge 4$ reversals and $\ge \text{ref} + 3$ | `mid-corner steering sawing / micro-corrections` (`steering_sawing`) |
+| **11. Throttle Progression / Pumping** | Cumulative negative drops $\sum \max(0, -d\,\text{Throttle}/ds)$ post-apex | $> 15\%$ cumulative drop before WOT | `post-apex throttle pumping / hesitation` (`throttle_pumping`) |
+| **12. Kinematic Curvature & Counter-Steer** | Curvature $\kappa = a_y / v^2$, ratio $K_{\text{us}} = |\delta|/(L|\kappa|)$, and $\text{sign}(\delta)\neq\text{sign}(a_y)$ | $\ge 6\text{m}$ opposite lock at $|a_y| \ge 0.4\text{G}$ | `snap oversteer requiring counter-steer correction` (`snap_oversteer_countersteer`) |
+| **13. Friction Ellipse Utilization %** | $\eta_{\text{grip}} = \sqrt{(a_x/G_{x,\max})^2 + (a_y/G_{y,\max})^2} \times 100\%$ | Normalized against 98th-percentile reference lap envelope | `user_grip_utilization_pct`, `ref_grip_utilization_pct` |
+| **14. V-Style vs. U-Style Exit Trade-Off** | Apex $\Delta v_{\text{min}}$ vs track-out $\Delta v_{\text{exit}}$ and full-throttle offset $\Delta s_{\text{WOT}}$ | $\Delta v_{\text{min}} > +1.0\text{ m/s}$, $\Delta v_{\text{exit}} < -1.5\text{ m/s}$, $\Delta s_{\text{WOT}} > +10\text{m}$ | `over-charged apex speed compromising exit acceleration` (`overslow_exit_compromise`) |
+| **15. ABS & Mid-Corner Downshifts** | ABS active distance and downshifts executed after turn-in (`Gear`, `ABSActive`) | ABS $> 15\text{m}$ or $\ge 1$ late downshift after turn-in | `excessive_abs_intervention`, `late_mid_corner_downshift` |
 
 ---
 
@@ -112,15 +120,12 @@ For every corner sector, the engine computes 7 deterministic metrics:
      - If driving inputs are clean (`technique_fault_isolated: false`), sets `allow_setup_adjustments: true` and attaches targeted setup adjustments from the GitBook RAG.
 2. **`query_setup_guide(corner_phase: str, symptom: str, component: str = None)`**
    - Direct vector store RAG lookup for mechanical or aerodynamic setup adjustments.
-3. **Complete Garage 61 OpenAPI v1 Coverage (All 43 Endpoints)**:
-   - Every operation in the [Garage 61 OpenAPI v1 specification](https://garage61.net/api/openapi/v1.json) is exposed as a dedicated MCP tool (`g61_*`) and `Garage61Client` method:
-     - **Analyses**: `g61_find_analyses`, `g61_get_analysis`
+3. **Garage 61 OpenAPI v1 Coverage (16 Core Driving, Content & Team Read Endpoints)**:
+   - Core driving, catalog, user, and team read operations in the [Garage 61 OpenAPI v1 specification](https://garage61.net/api/openapi/v1.json) are exposed as dedicated MCP tools (`g61_*`) and `Garage61Client` methods:
      - **Catalog (`cars`, `car-groups`, `tracks`, `platforms`)**: `g61_find_car_groups`, `g61_find_cars`, `g61_find_tracks`, `g61_find_platforms`
      - **Events & Laps**: `g61_find_events`, `g61_get_event`, `g61_find_laps`, `g61_get_lap`, `g61_get_lap_csv`, `g61_get_lap_ghost`
-     - **Current User (`/me`)**: `g61_get_me`, `g61_get_accounts`, `g61_get_statistics`, `g61_create_user_data_pack_group`, `g61_delete_user_data_pack_group`, `g61_create_user_data_pack`, `g61_delete_user_data_pack`
-     - **Teams & Statistics**: `g61_find_teams`, `g61_get_team`, `g61_get_team_statistics`, `g61_create_team_invite`, `g61_delete_team_member`
-     - **Team Training Plans**: `g61_get_team_training_plans`, `g61_get_team_training_plan`
-     - **Team Data Packs & Data Pack Groups**: `g61_get_team_data_pack_groups`, `g61_get_team_data_pack_group`, `g61_create_data_pack_group_member`, `g61_delete_data_pack_group_member`, `g61_delete_data_pack_group_subscriber`, `g61_get_team_data_packs`, `g61_get_team_data_pack`, `g61_update_team_data_pack`, `g61_create_team_data_pack_content`, `g61_update_team_data_pack_content`, `g61_delete_team_data_pack_content`, `g61_get_team_data_pack_content_ghost_lap_bin`, `g61_get_team_data_pack_content_lap_csv`, `g61_move_team_data_pack_content`, `g61_get_team_data_pack_content_replay_bin`, `g61_get_team_data_pack_content_setup_sto`, `g61_delete_data_pack_subscriber`
+     - **Current User (`/me`)**: `g61_get_me`, `g61_get_accounts`, `g61_get_statistics`
+     - **Teams & Statistics**: `g61_find_teams`, `g61_get_team`, `g61_get_team_statistics`
 
 ### Claude Desktop Configuration (`claude_desktop_config.json`)
 

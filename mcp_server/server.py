@@ -42,11 +42,12 @@ def _infer_clean_lap_balance_symptom(analysis: dict[str, Any]) -> tuple[str, str
     # Identify corner with largest speed deficit relative to reference
     slowest_corner = min(corners, key=lambda c: float(c.get("delta_v_min", 0.0)))
     scrub = float(slowest_corner.get("steering_scrub_delta_deg", 0.0))
+    us_delta = float(slowest_corner.get("understeer_index_delta", 0.0))
     exit_steer = float(slowest_corner.get("user_exit_steering_at_50pct_throttle_deg", 0.0))
 
-    if scrub > 4.0:
+    if scrub > 4.0 or us_delta > 0.15:
         return ("mid", "understeer")
-    if exit_steer > 15.0:
+    if exit_steer > 15.0 or us_delta < -0.15:
         return ("exit", "oversteer")
     return ("entry", "understeer")
 
@@ -134,6 +135,7 @@ def analyze_last_session(
         "flaws": math_report["flaws"],
         "corners": math_report["corners"],
         "summary_deltas": math_report["summary_deltas"],
+        "top_time_loss_corners": math_report.get("top_time_loss_corners", []),
         "setup_recommendations": setup_recommendations,
         "persona_system_prompt": RACE_ENGINEER_SYSTEM_PROMPT,
     }
@@ -175,49 +177,25 @@ def query_setup_guide(
 
 
 # =============================================================================
-# Complete Garage 61 API v1 MCP Tools (All 43 OpenAPI Endpoints)
+# Garage 61 API v1 MCP Tools (16 Core Driving Data, Content, User & Team Endpoints)
 # =============================================================================
 
 
-# 1. GET /analyses (operationId: findAnalyses)
-@mcp.tool()
-def g61_find_analyses(
-    types: list[str] | str | None = None,
-    trainingplan: str | None = None,
-    limit: int | None = None,
-    offset: int | None = None,
-) -> dict[str, Any] | list[Any]:
-    """Analyses for current user (`GET /analyses`, operationId: `findAnalyses`)."""
-    return Garage61Client().find_analyses(
-        types=types,
-        trainingplan=trainingplan,
-        limit=limit,
-        offset=offset,
-    )
-
-
-# 2. GET /analyses/{id} (operationId: getAnalysis)
-@mcp.tool()
-def g61_get_analysis(id: str) -> dict[str, Any] | list[Any]:
-    """Get analysis details (`GET /analyses/{id}`, operationId: `getAnalysis`)."""
-    return Garage61Client().get_analysis(id=id)
-
-
-# 3. GET /car-groups (operationId: findCarGroups)
+# 1. GET /car-groups (operationId: findCarGroups)
 @mcp.tool()
 def g61_find_car_groups() -> dict[str, Any] | list[Any]:
     """Available car groups (`GET /car-groups`, operationId: `findCarGroups`)."""
     return Garage61Client().find_car_groups()
 
 
-# 4. GET /cars (operationId: findCars)
+# 2. GET /cars (operationId: findCars)
 @mcp.tool()
 def g61_find_cars() -> dict[str, Any] | list[Any]:
     """Available cars (`GET /cars`, operationId: `findCars`)."""
     return Garage61Client().find_cars()
 
 
-# 5. GET /events (operationId: findEvents)
+# 3. GET /events (operationId: findEvents)
 @mcp.tool()
 def g61_find_events(
     platform: str | None = None,
@@ -246,14 +224,14 @@ def g61_find_events(
     )
 
 
-# 6. GET /events/{id} (operationId: getEvent)
+# 4. GET /events/{id} (operationId: getEvent)
 @mcp.tool()
 def g61_get_event(id: str) -> dict[str, Any] | list[Any]:
     """Get event details (`GET /events/{id}`, operationId: `getEvent`)."""
     return Garage61Client().get_event(id=id)
 
 
-# 7. GET /laps (operationId: findLaps)
+# 5. GET /laps (operationId: findLaps)
 @mcp.tool()
 def g61_find_laps(
     tracks: list[int] | str | int | None = None,
@@ -366,21 +344,21 @@ def g61_find_laps(
     )
 
 
-# 8. GET /laps/{id} (operationId: getLap)
+# 6. GET /laps/{id} (operationId: getLap)
 @mcp.tool()
 def g61_get_lap(id: str) -> dict[str, Any] | list[Any]:
     """Get information about a specific lap (`GET /laps/{id}`, operationId: `getLap`)."""
     return Garage61Client().get_lap(id=id)
 
 
-# 9. GET /laps/{id}/csv (operationId: getLapCSV)
+# 7. GET /laps/{id}/csv (operationId: getLapCSV)
 @mcp.tool()
 def g61_get_lap_csv(id: str) -> str:
     """Export the telemetry for a lap as a CSV file (`GET /laps/{id}/csv`, operationId: `getLapCSV`)."""
     return Garage61Client().get_lap_csv(id=id)
 
 
-# 10. GET /laps/{id}/ghost.bin (operationId: getLapGhost)
+# 8. GET /laps/{id}/ghost.bin (operationId: getLapGhost)
 @mcp.tool()
 def g61_get_lap_ghost(id: str) -> dict[str, Any]:
     """Download the ghost lap file for a lap (`GET /laps/{id}/ghost.bin`, operationId: `getLapGhost`)."""
@@ -393,49 +371,21 @@ def g61_get_lap_ghost(id: str) -> dict[str, Any]:
     }
 
 
-# 11. GET /me (operationId: me)
+# 9. GET /me (operationId: me)
 @mcp.tool()
 def g61_get_me() -> dict[str, Any] | list[Any]:
     """Information about the currently authenticated user (`GET /me`, operationId: `me`)."""
     return Garage61Client().get_me()
 
 
-# 12. GET /me/accounts (operationId: getAccounts)
+# 10. GET /me/accounts (operationId: getAccounts)
 @mcp.tool()
 def g61_get_accounts(rating_history: bool | None = None) -> dict[str, Any] | list[Any]:
     """Get linked accounts for the current user (`GET /me/accounts`, operationId: `getAccounts`)."""
     return Garage61Client().get_accounts(rating_history=rating_history)
 
 
-# 13. POST /me/datapackgroups (operationId: createUserDataPackGroup)
-@mcp.tool()
-def g61_create_user_data_pack_group(id: str) -> dict[str, Any] | list[Any]:
-    """Subscribe user to a data pack group (`POST /me/datapackgroups`, operationId: `createUserDataPackGroup`)."""
-    return Garage61Client().create_user_data_pack_group(id=id)
-
-
-# 14. DELETE /me/datapackgroups/{id} (operationId: deleteUserDataPackGroup)
-@mcp.tool()
-def g61_delete_user_data_pack_group(id: str) -> dict[str, Any] | list[Any]:
-    """Unsubscribe user from a data pack group (`DELETE /me/datapackgroups/{id}`, operationId: `deleteUserDataPackGroup`)."""
-    return Garage61Client().delete_user_data_pack_group(id=id)
-
-
-# 15. POST /me/datapacks (operationId: createUserDataPack)
-@mcp.tool()
-def g61_create_user_data_pack(id: str) -> dict[str, Any] | list[Any]:
-    """Subscribe user to a data pack (`POST /me/datapacks`, operationId: `createUserDataPack`)."""
-    return Garage61Client().create_user_data_pack(id=id)
-
-
-# 16. DELETE /me/datapacks/{id} (operationId: deleteUserDataPack)
-@mcp.tool()
-def g61_delete_user_data_pack(id: str) -> dict[str, Any] | list[Any]:
-    """Unsubscribe user from a data pack (`DELETE /me/datapacks/{id}`, operationId: `deleteUserDataPack`)."""
-    return Garage61Client().delete_user_data_pack(id=id)
-
-
-# 17. GET /me/statistics (operationId: getStatistics)
+# 11. GET /me/statistics (operationId: getStatistics)
 @mcp.tool()
 def g61_get_statistics(
     start: str | None = None,
@@ -452,327 +402,28 @@ def g61_get_statistics(
     )
 
 
-# 18. GET /platforms (operationId: findPlatforms)
+# 12. GET /platforms (operationId: findPlatforms)
 @mcp.tool()
 def g61_find_platforms() -> dict[str, Any] | list[Any]:
     """Available platforms (`GET /platforms`, operationId: `findPlatforms`)."""
     return Garage61Client().find_platforms()
 
 
-# 19. GET /teams (operationId: findTeams)
+# 13. GET /teams (operationId: findTeams)
 @mcp.tool()
 def g61_find_teams() -> dict[str, Any] | list[Any]:
     """Joined teams (`GET /teams`, operationId: `findTeams`)."""
     return Garage61Client().find_teams()
 
 
-# 20. GET /teams/{id} (operationId: getTeam)
+# 14. GET /teams/{id} (operationId: getTeam)
 @mcp.tool()
 def g61_get_team(id: str) -> dict[str, Any] | list[Any]:
     """Get information about a specific team (`GET /teams/{id}`, operationId: `getTeam`)."""
     return Garage61Client().get_team(id=id)
 
 
-# 21. GET /teams/{team}/datapackgroups (operationId: getTeamDataPackGroups)
-@mcp.tool()
-def g61_get_team_data_pack_groups(
-    team: str,
-    limit: int | None = None,
-    offset: int | None = None,
-) -> dict[str, Any] | list[Any]:
-    """Get data pack groups for a team (`GET /teams/{team}/datapackgroups`, operationId: `getTeamDataPackGroups`)."""
-    return Garage61Client().get_team_data_pack_groups(
-        team=team,
-        limit=limit,
-        offset=offset,
-    )
-
-
-# 22. GET /teams/{team}/datapackgroups/{id} (operationId: getTeamDataPackGroup)
-@mcp.tool()
-def g61_get_team_data_pack_group(team: str, id: str) -> dict[str, Any] | list[Any]:
-    """Get data pack group for a team (`GET /teams/{team}/datapackgroups/{id}`, operationId: `getTeamDataPackGroup`)."""
-    return Garage61Client().get_team_data_pack_group(team=team, id=id)
-
-
-# 23. POST /teams/{team}/datapackgroups/{id}/members (operationId: createDataPackGroupMember)
-@mcp.tool()
-def g61_create_data_pack_group_member(
-    team: str,
-    id: str,
-    data_pack_id: str,
-) -> dict[str, Any] | list[Any]:
-    """Add data pack to a data pack group (`POST /teams/{team}/datapackgroups/{id}/members`, operationId: `createDataPackGroupMember`)."""
-    return Garage61Client().create_data_pack_group_member(
-        team=team,
-        id=id,
-        data_pack_id=data_pack_id,
-    )
-
-
-# 24. DELETE /teams/{team}/datapackgroups/{id}/members/{member} (operationId: deleteDataPackGroupMember)
-@mcp.tool()
-def g61_delete_data_pack_group_member(
-    team: str,
-    id: str,
-    member: str,
-) -> dict[str, Any] | list[Any]:
-    """Remove data pack from a data pack group (`DELETE /teams/{team}/datapackgroups/{id}/members/{member}`, operationId: `deleteDataPackGroupMember`)."""
-    return Garage61Client().delete_data_pack_group_member(
-        team=team,
-        id=id,
-        member=member,
-    )
-
-
-# 25. DELETE /teams/{team}/datapackgroups/{id}/subscribers/{subscriber} (operationId: deleteDataPackGroupSubscriber)
-@mcp.tool()
-def g61_delete_data_pack_group_subscriber(
-    team: str,
-    id: str,
-    subscriber: str,
-) -> dict[str, Any] | list[Any]:
-    """Remove subscriber from a data pack group (`DELETE /teams/{team}/datapackgroups/{id}/subscribers/{subscriber}`, operationId: `deleteDataPackGroupSubscriber`)."""
-    return Garage61Client().delete_data_pack_group_subscriber(
-        team=team,
-        id=id,
-        subscriber=subscriber,
-    )
-
-
-# 26. GET /teams/{team}/datapacks (operationId: getTeamDataPacks)
-@mcp.tool()
-def g61_get_team_data_packs(
-    team: str,
-    limit: int | None = None,
-    offset: int | None = None,
-) -> dict[str, Any] | list[Any]:
-    """Get data packs for a team (`GET /teams/{team}/datapacks`, operationId: `getTeamDataPacks`)."""
-    return Garage61Client().get_team_data_packs(
-        team=team,
-        limit=limit,
-        offset=offset,
-    )
-
-
-# 27. GET /teams/{team}/datapacks/{id} (operationId: getTeamDataPack)
-@mcp.tool()
-def g61_get_team_data_pack(team: str, id: str) -> dict[str, Any] | list[Any]:
-    """Get data pack for a team (`GET /teams/{team}/datapacks/{id}`, operationId: `getTeamDataPack`)."""
-    return Garage61Client().get_team_data_pack(team=team, id=id)
-
-
-# 28. POST /teams/{team}/datapacks/{id} (operationId: updateTeamDataPack)
-@mcp.tool()
-def g61_update_team_data_pack(
-    team: str,
-    id: str,
-    name: str | None = None,
-    archived: bool | None = None,
-) -> dict[str, Any] | list[Any]:
-    """Update data pack for a team (`POST /teams/{team}/datapacks/{id}`, operationId: `updateTeamDataPack`)."""
-    return Garage61Client().update_team_data_pack(
-        team=team,
-        id=id,
-        name=name,
-        archived=archived,
-    )
-
-
-# 29. POST /teams/{team}/datapacks/{id}/content (operationId: createTeamDataPackContent)
-@mcp.tool()
-def g61_create_team_data_pack_content(
-    team: str,
-    id: str,
-    video_url: str,
-    content_type: str = "video",
-    featured: bool = True,
-) -> dict[str, Any] | list[Any]:
-    """Add content to a data pack for a team (`POST /teams/{team}/datapacks/{id}/content`, operationId: `createTeamDataPackContent`)."""
-    return Garage61Client().create_team_data_pack_content(
-        team=team,
-        id=id,
-        video_url=video_url,
-        content_type=content_type,
-        featured=featured,
-    )
-
-
-# 30. POST /teams/{team}/datapacks/{id}/content/{item} (operationId: updateTeamDataPackContent)
-@mcp.tool()
-def g61_update_team_data_pack_content(
-    team: str,
-    id: str,
-    item: str,
-    video_url: str,
-    content_type: str = "video",
-) -> dict[str, Any] | list[Any]:
-    """Update data pack content for a team (`POST /teams/{team}/datapacks/{id}/content/{item}`, operationId: `updateTeamDataPackContent`)."""
-    return Garage61Client().update_team_data_pack_content(
-        team=team,
-        id=id,
-        item=item,
-        video_url=video_url,
-        content_type=content_type,
-    )
-
-
-# 31. DELETE /teams/{team}/datapacks/{id}/content/{item} (operationId: deleteTeamDataPackContent)
-@mcp.tool()
-def g61_delete_team_data_pack_content(
-    team: str,
-    id: str,
-    item: str,
-) -> dict[str, Any] | list[Any]:
-    """Delete data pack content for a team (`DELETE /teams/{team}/datapacks/{id}/content/{item}`, operationId: `deleteTeamDataPackContent`)."""
-    return Garage61Client().delete_team_data_pack_content(
-        team=team,
-        id=id,
-        item=item,
-    )
-
-
-# 32. GET /teams/{team}/datapacks/{id}/content/{item}/ghost.bin (operationId: getTeamDataPackContentGhostLapBin)
-@mcp.tool()
-def g61_get_team_data_pack_content_ghost_lap_bin(
-    team: str,
-    id: str,
-    item: str,
-) -> dict[str, Any]:
-    """Download ghost lap file for a content item (`GET /teams/{team}/datapacks/{id}/content/{item}/ghost.bin`, operationId: `getTeamDataPackContentGhostLapBin`)."""
-    raw = Garage61Client().get_team_data_pack_content_ghost_lap_bin(
-        team=team,
-        id=id,
-        item=item,
-    )
-    return {
-        "team": team,
-        "data_pack_id": id,
-        "item_id": item,
-        "content_type": "application/octet-stream",
-        "size_bytes": len(raw),
-        "data_base64": base64.b64encode(raw).decode("ascii"),
-    }
-
-
-# 33. GET /teams/{team}/datapacks/{id}/content/{item}/lap.csv (operationId: getTeamDataPackContentLapCsv)
-@mcp.tool()
-def g61_get_team_data_pack_content_lap_csv(
-    team: str,
-    id: str,
-    item: str,
-) -> str:
-    """Export telemetry for a lap content item (`GET /teams/{team}/datapacks/{id}/content/{item}/lap.csv`, operationId: `getTeamDataPackContentLapCsv`)."""
-    return Garage61Client().get_team_data_pack_content_lap_csv(
-        team=team,
-        id=id,
-        item=item,
-    )
-
-
-# 34. POST /teams/{team}/datapacks/{id}/content/{item}/move (operationId: moveTeamDataPackContent)
-@mcp.tool()
-def g61_move_team_data_pack_content(
-    team: str,
-    id: str,
-    item: str,
-    position: int,
-) -> dict[str, Any] | list[Any]:
-    """Move data pack content for a team (`POST /teams/{team}/datapacks/{id}/content/{item}/move`, operationId: `moveTeamDataPackContent`)."""
-    return Garage61Client().move_team_data_pack_content(
-        team=team,
-        id=id,
-        item=item,
-        position=position,
-    )
-
-
-# 35. GET /teams/{team}/datapacks/{id}/content/{item}/replay.bin (operationId: getTeamDataPackContentReplayBin)
-@mcp.tool()
-def g61_get_team_data_pack_content_replay_bin(
-    team: str,
-    id: str,
-    item: str,
-) -> dict[str, Any]:
-    """Download file for a replay content item (`GET /teams/{team}/datapacks/{id}/content/{item}/replay.bin`, operationId: `getTeamDataPackContentReplayBin`)."""
-    raw = Garage61Client().get_team_data_pack_content_replay_bin(
-        team=team,
-        id=id,
-        item=item,
-    )
-    return {
-        "team": team,
-        "data_pack_id": id,
-        "item_id": item,
-        "content_type": "application/octet-stream",
-        "size_bytes": len(raw),
-        "data_base64": base64.b64encode(raw).decode("ascii"),
-    }
-
-
-# 36. GET /teams/{team}/datapacks/{id}/content/{item}/setup.sto (operationId: getTeamDataPackContentSetupSto)
-@mcp.tool()
-def g61_get_team_data_pack_content_setup_sto(
-    team: str,
-    id: str,
-    item: str,
-) -> dict[str, Any]:
-    """Download iRacing setup for a setup content item (`GET /teams/{team}/datapacks/{id}/content/{item}/setup.sto`, operationId: `getTeamDataPackContentSetupSto`)."""
-    raw = Garage61Client().get_team_data_pack_content_setup_sto(
-        team=team,
-        id=id,
-        item=item,
-    )
-    return {
-        "team": team,
-        "data_pack_id": id,
-        "item_id": item,
-        "content_type": "application/octet-stream",
-        "size_bytes": len(raw),
-        "data_base64": base64.b64encode(raw).decode("ascii"),
-    }
-
-
-# 37. DELETE /teams/{team}/datapacks/{id}/subscribers/{subscriber} (operationId: deleteDataPackSubscriber)
-@mcp.tool()
-def g61_delete_data_pack_subscriber(
-    team: str,
-    id: str,
-    subscriber: str,
-) -> dict[str, Any] | list[Any]:
-    """Remove subscriber from a data pack (`DELETE /teams/{team}/datapacks/{id}/subscribers/{subscriber}`, operationId: `deleteDataPackSubscriber`)."""
-    return Garage61Client().delete_data_pack_subscriber(
-        team=team,
-        id=id,
-        subscriber=subscriber,
-    )
-
-
-# 38. POST /teams/{team}/invites (operationId: createTeamInvite)
-@mcp.tool()
-def g61_create_team_invite(
-    team: str,
-    name: str,
-    max_usages: int = 0,
-    expires_after: int = 0,
-) -> dict[str, Any] | list[Any]:
-    """Create team invite (`POST /teams/{team}/invites`, operationId: `createTeamInvite`)."""
-    return Garage61Client().create_team_invite(
-        team=team,
-        name=name,
-        max_usages=max_usages,
-        expires_after=expires_after,
-    )
-
-
-# 39. DELETE /teams/{team}/members/{id} (operationId: deleteTeamMember)
-@mcp.tool()
-def g61_delete_team_member(team: str, id: str) -> dict[str, Any] | list[Any]:
-    """Remove member from team (`DELETE /teams/{team}/members/{id}`, operationId: `deleteTeamMember`)."""
-    return Garage61Client().delete_team_member(team=team, id=id)
-
-
-# 40. GET /teams/{team}/statistics (operationId: getTeamStatistics)
+# 15. GET /teams/{team}/statistics (operationId: getTeamStatistics)
 @mcp.tool()
 def g61_get_team_statistics(
     team: str,
@@ -791,29 +442,7 @@ def g61_get_team_statistics(
     )
 
 
-# 41. GET /teams/{team}/trainingplans (operationId: getTeamTrainingPlans)
-@mcp.tool()
-def g61_get_team_training_plans(
-    team: str,
-    limit: int | None = None,
-    offset: int | None = None,
-) -> dict[str, Any] | list[Any]:
-    """Get training plans for a team (`GET /teams/{team}/trainingplans`, operationId: `getTeamTrainingPlans`)."""
-    return Garage61Client().get_team_training_plans(
-        team=team,
-        limit=limit,
-        offset=offset,
-    )
-
-
-# 42. GET /teams/{team}/trainingplans/{id} (operationId: getTeamTrainingPlan)
-@mcp.tool()
-def g61_get_team_training_plan(team: str, id: str) -> dict[str, Any] | list[Any]:
-    """Get training plan for a team (`GET /teams/{team}/trainingplans/{id}`, operationId: `getTeamTrainingPlan`)."""
-    return Garage61Client().get_team_training_plan(team=team, id=id)
-
-
-# 43. GET /tracks (operationId: findTracks)
+# 16. GET /tracks (operationId: findTracks)
 @mcp.tool()
 def g61_find_tracks() -> dict[str, Any] | list[Any]:
     """Available tracks (`GET /tracks`, operationId: `findTracks`)."""
