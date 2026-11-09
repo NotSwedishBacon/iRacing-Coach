@@ -1,6 +1,7 @@
-"""Chunking and metadata classification pipeline for ingesting GitBook docs into ChromaDB.
+"""Chunking and metadata classification pipeline for ingesting the committed GitBook docs into ChromaDB.
 
-Splits Markdown documents on `##` and `###` headers and tags every chunk with:
+Reads the scraped Markdown documents from `./data/gitbook_docs/`, splits on `##`, `###`,
+and `####` headers, and tags every chunk with:
 - `phase`: "entry", "mid", "exit", or "general"
 - `symptom`: "understeer", "oversteer", "tire_wear", "bottoming", or "general"
 - `component`: "arb", "springs", "dampers_low", "dampers_fast", "diff",
@@ -16,7 +17,6 @@ from pathlib import Path
 from typing import Any
 
 from config import settings
-from scraper.crawl_gitbook import crawl_gitbook, write_fallback_gitbook_docs
 
 logger = logging.getLogger(__name__)
 
@@ -34,27 +34,47 @@ VALID_COMPONENTS = (
 )
 
 PHASE_KEYWORDS: dict[str, tuple[str, ...]] = {
-    "entry": ("entry", "turn-in", "turn in", "braking", "trail-braking", "trail braking", "coast", "deceleration"),
-    "mid": ("mid-corner", "mid corner", "apex", "steady-state", "steady state", "center of the corner"),
-    "exit": ("exit", "throttle", "power", "acceleration", "traction", "track-out", "wheelspin"),
+    "entry": (
+        "entry",
+        "turn-in",
+        "turn in",
+        "braking",
+        "trail-braking",
+        "trail braking",
+        "coast",
+        "deceleration",
+        "off power",
+    ),
+    "mid": ("mid-corner", "mid corner", "middle", "apex", "steady-state", "steady state", "center of the corner"),
+    "exit": ("exit", "throttle", "on power", "acceleration", "traction", "track-out", "wheelspin", "drive ramp"),
 }
 
 SYMPTOM_KEYWORDS: dict[str, tuple[str, ...]] = {
     "understeer": ("understeer", "push", "tight", "plowing", "front wash"),
     "oversteer": ("oversteer", "loose", "snap", "spin", "rear instability", "rotation"),
-    "tire_wear": ("tire wear", "tyre wear", "wear", "degradation", "shoulder", "scrubbing", "blistering"),
-    "bottoming": ("bottoming", "bottom out", "splitter strike", "porpoising", "grounding"),
+    "tire_wear": ("tire wear", "tyre wear", "wear", "degradation", "shoulder", "scrubbing", "blistering", "temperature"),
+    "bottoming": ("bottoming", "bottom out", "splitter", "porpoising", "grounding"),
 }
 
 COMPONENT_KEYWORDS: dict[str, tuple[str, ...]] = {
-    "arb": ("anti-roll bar", "arb", "sway bar", "roll bar"),
-    "springs": ("spring", "heave", "third spring", "ride height", "coil"),
-    "dampers_low": ("low-speed", "low speed", "low-speed bump", "low-speed rebound", "pitch", "roll rate"),
-    "dampers_fast": ("high-speed", "fast bump", "fast rebound", "fast damper", "curb", "kerb"),
-    "diff": ("differential", "diff", "preload", "coast ramp", "power ramp", "clutch plate"),
+    "arb": ("anti-roll bar", "arb", "swaybar", "sway bar", "roll bar"),
+    "springs": ("spring", "heave", "third spring", "coil", "torsion bar"),
+    "dampers_low": (
+        "low-speed",
+        "low speed",
+        "shock",
+        "dampening",
+        "damping",
+        "compression",
+        "rebound",
+        "pitch",
+        "roll rate",
+    ),
+    "dampers_fast": ("high-speed", "high speed", "fast bump", "fast rebound", "fast damper", "curb", "kerb", "bump"),
+    "diff": ("differential", "diff", "preload", "coast ramp", "cost ramp", "drive ramp", "power ramp", "clutch"),
     "camber_toe": ("camber", "toe", "toe-in", "toe-out", "caster", "alignment"),
-    "brake_bias": ("brake bias", "brake balance", "bias", "master cylinder"),
-    "aero_rake": ("aero", "rake", "wing", "splitter", "downforce", "center of pressure"),
+    "brake_bias": ("brake bias", "brake balance", "brake cylinder", "master cylinder", "bias"),
+    "aero_rake": ("aero", "rake", "ride height", "wing", "splitter", "downforce", "center of pressure"),
 }
 
 
@@ -73,7 +93,6 @@ def _score_keywords(text: str, mapping: dict[str, tuple[str, ...]], default: str
 def classify_chunk_metadata(header: str, body: str, source_file: str = "") -> dict[str, str]:
     """Classify a markdown chunk into phase, symptom, and component metadata."""
     section_only = header.split(" - ", 1)[-1] if " - " in header else header
-    # Weight the specific section heading highest so subsection topics (e.g. Brake Bias vs Aero) dominate
     weighted_text = f"{section_only} {section_only} {section_only} {header} {body} {source_file}"
     phase = _score_keywords(weighted_text, PHASE_KEYWORDS, default="general")
     symptom = _score_keywords(weighted_text, SYMPTOM_KEYWORDS, default="general")
@@ -88,14 +107,14 @@ def classify_chunk_metadata(header: str, body: str, source_file: str = "") -> di
 
 
 def chunk_markdown(markdown_text: str, source_file: str = "doc.md") -> list[dict[str, Any]]:
-    """Split a Markdown document on `##` and `###` headers and attach structured metadata."""
+    """Split a Markdown document on `##`, `###`, and `####` headers and attach structured metadata."""
     lines = markdown_text.splitlines()
     doc_title = source_file
     raw_sections: list[tuple[str, list[str]]] = []
     current_header = ""
     current_lines: list[str] = []
 
-    header_pattern = re.compile(r"^(#{2,3})\s+(.+)$")
+    header_pattern = re.compile(r"^(#{2,4})\s+(.+)$")
     h1_pattern = re.compile(r"^#\s+(.+)$")
 
     for line in lines:
@@ -136,10 +155,10 @@ def chunk_markdown(markdown_text: str, source_file: str = "doc.md") -> list[dict
 
 
 def load_and_chunk_directory(docs_dir: Path | None = None) -> list[dict[str, Any]]:
-    """Load all markdown files from docs_dir (creating fallback docs if empty) and chunk them."""
+    """Load all pre-scraped GitBook markdown files from `docs_dir` and chunk them."""
     target_dir = docs_dir or settings.gitbook_dir
-    if not target_dir.exists() or not list(target_dir.glob("*.md")):
-        write_fallback_gitbook_docs(target_dir)
+    if not target_dir.exists():
+        raise FileNotFoundError(f"GitBook documentation directory not found: {target_dir}")
 
     all_chunks: list[dict[str, Any]] = []
     for md_file in sorted(target_dir.glob("*.md")):
@@ -148,17 +167,11 @@ def load_and_chunk_directory(docs_dir: Path | None = None) -> list[dict[str, Any
     return all_chunks
 
 
-def ingest_gitbook_to_vector_store(
-    docs_dir: Path | None = None,
-    force_crawl: bool = False,
-) -> int:
-    """Ingest all GitBook markdown chunks into the persistent vector store."""
+def ingest_gitbook_to_vector_store(docs_dir: Path | None = None) -> int:
+    """Ingest all pre-scraped GitBook markdown chunks into the persistent vector store."""
     from rag.vector_store import get_vector_store
 
     target_dir = docs_dir or settings.gitbook_dir
-    if force_crawl or not target_dir.exists() or not list(target_dir.glob("*.md")):
-        crawl_gitbook(output_dir=target_dir)
-
     chunks = load_and_chunk_directory(target_dir)
     store = get_vector_store()
     store.upsert_chunks(chunks)

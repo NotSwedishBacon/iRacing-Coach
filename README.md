@@ -14,9 +14,10 @@ iracing-engineer-mcp/
 ├── pyproject.toml
 ├── .env.example
 ├── config.py
+├── data/
+│   └── gitbook_docs/         # Complete 18-page Markdown corpus from learnsetup.gitbook.io
 ├── scraper/
-│   ├── crawl_gitbook.py      # Playwright + BeautifulSoup GitBook crawler (with offline fallback corpus)
-│   └── ingest_rag.py         # Markdown ## / ### chunker & metadata classifier
+│   └── ingest_rag.py         # Markdown ## / ### / #### chunker & metadata classifier
 ├── telemetry/
 │   ├── g61_client.py         # Authenticated Garage61 API v1 client & 60 Hz CSV parser
 │   ├── signal_math.py        # 1.0m SciPy spatial resampling & 7 deterministic physics checks
@@ -50,10 +51,7 @@ source .venv/bin/activate
 # 2. Install dependencies
 uv pip install -e .
 
-# 3. (Optional) Install Playwright Chromium browser for live GitBook scraping
-playwright install chromium
-
-# 4. Configure environment variables
+# 3. Configure environment variables
 cp .env.example .env
 ```
 
@@ -67,19 +65,11 @@ GITBOOK_CACHE_DIR=./data/gitbook_docs
 
 ---
 
-## 3. Running the GitBook Crawler & Vector RAG Ingestion
+## 3. Vector RAG Ingestion (`data/gitbook_docs/` -> ChromaDB)
 
-### Step 1: Crawl the GitBook Documentation
-`scraper/crawl_gitbook.py` uses Playwright to load `https://learnsetup.gitbook.io/learn-car-setup-for-iracing`, extract all sidebar `<nav>` links, recursively visit topic pages, strip navigation chrome with BeautifulSoup, and write clean Markdown files to `./data/gitbook_docs/`.
+All 18 pages from `https://learnsetup.gitbook.io/learn-car-setup-for-iracing` are pre-scraped and committed directly under `./data/gitbook_docs/`.
 
-*(If external internet access or browser binaries are restricted, the crawler automatically populates `./data/gitbook_docs/` with the built-in setup engineering corpus so offline ingestion and tests always succeed.)*
-
-```bash
-python -m scraper.crawl_gitbook
-```
-
-### Step 2: Chunk & Ingest into ChromaDB
-`scraper/ingest_rag.py` splits the Markdown files on `##` and `###` headers, tags every chunk with structured metadata (`phase`, `symptom`, `component`), embeds them with `all-MiniLM-L6-v2`, and persists them to `./data/chroma_db`:
+`scraper/ingest_rag.py` splits the Markdown files on `##`, `###`, and `####` headers (producing 139 setup chunks), tags every chunk with structured metadata (`phase`, `symptom`, `component`), embeds them with `all-MiniLM-L6-v2`, and persists them to `./data/chroma_db` (which also auto-populates on first query if empty):
 
 ```bash
 python -m scraper.ingest_rag
