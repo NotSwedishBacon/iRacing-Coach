@@ -86,14 +86,26 @@ class SetupVectorStore:
     def _encode(self, texts: list[str]) -> list[list[float]]:
         if self._encoder is None:
             try:
-                from sentence_transformers import SentenceTransformer
+                from chromadb.utils.embedding_functions import ONNXMiniLM_L6_V2
 
-                self._encoder = SentenceTransformer(self.model_name, local_files_only=True)
+                onnx_ef = ONNXMiniLM_L6_V2()
+                if onnx_ef.DOWNLOAD_PATH.exists():
+                    self._encoder = ("onnx", onnx_ef)
+                else:
+                    raise FileNotFoundError("ONNX model cache not present locally")
             except Exception:
-                self._encoder = False  # Sentinel indicating offline deterministic embedding
+                try:
+                    from sentence_transformers import SentenceTransformer
 
-        if self._encoder:
-            embeddings = self._encoder.encode(texts, normalize_embeddings=True)
+                    self._encoder = ("st", SentenceTransformer(self.model_name, local_files_only=True))
+                except Exception:
+                    self._encoder = False  # Sentinel indicating offline deterministic embedding
+
+        if isinstance(self._encoder, tuple):
+            kind, model = self._encoder
+            if kind == "onnx":
+                return [[float(x) for x in vec] for vec in model(texts)]
+            embeddings = model.encode(texts, normalize_embeddings=True)
             return [emb.tolist() for emb in embeddings]
 
         return [_deterministic_hash_embedding(t) for t in texts]

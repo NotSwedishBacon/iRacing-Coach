@@ -1,0 +1,1531 @@
+[
+  {
+    "id": "45e7b7c1a311e23f",
+    "text": "Learn car setup for iRacing\n\nThis online guide will help you learn how to create your own car setup or modify existing setups to suit your driving style, car and track.   If you really want to get better at creating and modifying setups reading the entire guide will help you understand when to make what adjustment for what you are trying to do.  Having said that if you don't have the time right now and are just looking for general guidelines on what to change to reduce oversteer or reduce understeer without really understanding the \"why\", then the [cheat sheet](/learn-car-setup-for-iracing/cheat-sheet-setup-changes-for-oversteer-and-understeer.md) section is a great place to start.\n\nThe section on [weight transfer](/learn-car-setup-for-iracing/weight-transfer.md) is important to be able to understand how car setups and driving technique affect the balance of the car, so you might want to start there. \n\nIf you want to learn how trail braking can help you affect the balance of the car into a corner, then the [Braking ](/learn-car-setup-for-iracing/driving-technique/braking.md)section is a great place to start.   If you want to improve how you practice and prepare for a race, you might want to read the [Pre-Race Prep ](/learn-car-setup-for-iracing/driving-technique/pre-race-prep.md)section.\n\nI hope this helps you get more out of racing.\n\nCheers\n\nMartin Crisp\n\nFeel free to join my [discord server](https://discord.gg/3kZdnHq39V)\n\nCome say hi on [twitch ](https://www.twitch.tv/martincrisp)or [youtube](https://www.youtube.com/@crispy.iracing). \n\n{% embed url=\"<https://www.twitch.tv/martincrisp>\" %}\nTwitch\n{% endembed %}\n\n{% embed url=\"<https://www.youtube.com/@crispy.iracing>\" %}\nYoutube\n{% endembed %}",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "springs",
+      "header": "Learn car setup for iRacing",
+      "source": "01-learn-car-setup-for-iracing.md"
+    }
+  },
+  {
+    "id": "354cc8d84f8dd9c6",
+    "text": "Weight Transfer\n\nUnderstanding the concept of \"weight transfer\" is the most important element of how car setups and driving technique affect the handling balance of your car.\n\nPerhaps you already understand this, but as you increase the vertical load on a tire that increases the grip that tire will produce. This is why downforce cars have more grip for example. But we can use this concept to affect the balance of the car both in the way the car is setup and also your driving technique.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Weight Transfer",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "4b14dd90b45b95aa",
+    "text": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>\n\n<mark style=\"color:purple;\">As you increase the vertical load on a tire that increases the grip that tire will produce.</mark>\n\nSo first let's understand the concepts of \"Lateral\" (between left and right side of the car) and \"Longitudinal\" (between front and back) weight transfer and then explore how we can control those two different weight transfers using setup and driving techniques.\n\n***",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "587e4016ce0c1139",
+    "text": "Weight Transfer - Longitudinal Weight Transfer\n\nLongitudinal weight transfer is more straight forward than Lateral weight transfer but more on that later. Longitudinal weight transfer is about transferring weight between the front and rear tires of the car.\n\nFor example, since the more vertical load a tire has the more grip it has, then the more of the car's existing weight can be transferred to the front of the car during corner entry the more steering the car will have on corner entry.\n\nLikewise, if you were to transfer less weight to the front tires on corner entry then you will have less steering (i.e more understeer). Finding the right amount of weight transfer to get the car balance you want is part setup and part driving technique. More on that later.\n\nThis is not to say that if you add more physical weight to the front of the car it will steer more, as that would cause the car to steer less due to the increase in centrifugal force by adding more weight to the front. This is why for example the Porsche 911 with the gas tank up front will have more steering as the fuel burns off the car because you are reducing the physical weight at the front of the car.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "springs",
+      "header": "Weight Transfer - Longitudinal Weight Transfer",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "5735dd35bebeb153",
+    "text": "Weight Transfer - How to affect longitudinal weight transfer with setups\n\nThe greater the rake in the car (see ride height section for more info) the more weight is placed on the front tires even at a static state. But keep in mind that it is not a lot more. If you go into iRacing and put the front and rear ride heights to be the same and then look at the corner weights iRacing calculates, and then compare those corner weights after you jack up the rear ride height a lot, you will not see much difference in the weight over the front tires compared to rear tires between These two settings. So, it is a small difference, but it is still there.\n\nSimilar results if you soften the front springs and stiffen the rear springs (see springs section for more info). You will see only a very small difference in the weight being added to the front tires and removed from the rear tires in this static state.\n\nAlso, with either of these rake or spring changes, when you brake you will be transferring slightly more weight forward than before these changes.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Weight Transfer - How to affect longitudinal weight transfer with setups",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "cafd1467becfc2c2",
+    "text": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>\n\n<mark style=\"color:purple;\">Longitudinal weight transfer has a massive impact on car balance, and you can control it via driving technique and setup.</mark>\n\n***",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "853ee40a0e1be665",
+    "text": "Weight Transfer - Lateral Weight Transfer\n\nLateral weight transfer is the transfer of your car's existing weight between the left side tires and the right side tires. As you turn a corner the inside tires will have less vertical load reducing their grip and the outside tires will have more vertical load increasing their grip. i.e the weight is transferred from the inside to the outside tires. But there is a very important detail about this that when you understand it will help you with fine tuning the balance of your car. So, let's get into it.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Weight Transfer - Lateral Weight Transfer",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "4e782281dd8c6f65",
+    "text": "Weight Transfer - But how does lateral weight transfer affect the balance of your car?\n\nThe important thing to remember about lateral weight transfer is, the greater the difference in load between the inside tire and the outside tire (i.e. more lateral weight transfer), the less overall lateral grip the car will have.\n\nThe reason for this is that as we increase the load on the tire by \"X\" amount, we don't get the same \"X\" amount increase in lateral grip. The curved line on the \"Tire Performance Curve\" shows that as you increase the vertical load on a tire by 100 units, the tire does not produce the same incremental 100 units of lateral grip.\n\nSo, this means you can affect the balance of the car by having different amounts of weight transfer across the front tires than the weight transfer across the rear tires. Specifically end of the car that has more weight transfer from the inside to the outside tire will have less grip than the other end of the car.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Weight Transfer - But how does lateral weight transfer affect the balance of your car?",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "9782e525be00366a",
+    "text": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>\n\n<mark style=\"color:purple;\">As a car transfers weight from the inside tire to the outside tire during cornering the overall lateral grip decreases because the inside tire loose more grip than the outside tire gains in grip. The greater the lateral weight transfer the less lateral grip is generated</mark>\n\n<mark style=\"color:purple;\">This means that by having more lateral weight transfer at one end of the car, that end of the car will have less grip, thus affecting the balance of the car</mark>",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "ea672284fbbf148f",
+    "text": "Weight Transfer - **Example of equal lateral weight transfer both front and rear**\n\nTo further help you understand this, I used the numbers in the tire performance curve shown above and did the math as shown in the table below. These calculations show that if we assume we are turning left, the car has 50/50 front to rear weight distribution, weighs 2000 units and assumes the front and rear tires transfer the same amount of weight from the inside tire to the outside tire.\n\nIn this example I assume the lateral weight transfer for both front and rear tires transfers 500 units of vertical load from the inside tire to the outside tire. <mark style=\"color:purple;\">The overall lateral grip is reduced from 1042 units to 925 units (300 for inside tire and 625 for the outside tire), for both the front and the rear. This shows how lateral weight transfer will reduce lateral grip, and this can be leveraged to affect the balance of the car as explained below.</mark>\n\n|                               | Static | While Cornering                        |\n| ----------------------------- | ------ | -------------------------------------- |\n| Car Weight                    | 2000   | 2000                                   |\n| Front weight distribution     | 50%    | 50%                                    |\n| Rear weight distribution      | 50%    | 50%                                    |\n| Front lateral weight transfer |        | 500                                    |\n| Rear lateral weight transfer  |        | 500                                    |\n| **FRONT**                     |        |                                        |\n| FL vertical load              | 500    | 250                                    |\n| FL laterial grip              | 521    | 300                                    |\n| FR vertical load              | 500    | 750                                    |\n| FR lateral grip               | 521    | 625                                    |\n| Total front lateral grip      | 1042   | <mark style=\"color:purple;\">925</mark> |\n| Front tire grip efficiency    | 1.04   | 0.925                                  |\n| **REAR**                      |        |                                        |\n| RL vertical load              | 500    | 250                                    |\n| RL lateral grip               | 521    | 300                                    |\n| RR vertical load              | 500    | 750                                    |\n| RR lateral grip               | 521    | 625                                    |\n| Total rear grip               | 1042   | <mark style=\"color:purple;\">925</mark> |\n| Rear tire grip efficiency     | 1.04   | 0.925                                  |",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Weight Transfer - **Example of equal lateral weight transfer both front and rear**",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "2dab86057efcdda2",
+    "text": "Weight Transfer - **Example of more oversteer through less front lateral weight transfer**\n\nBy controlling how the amount lateral weight transfer at the front of the car versus the rear of the car or at least how fast this weight transfer happens then we can affect the balance of the car. For example, if you are able to get the car to transfer less lateral load at the front tires (200 units in this example) than the rear tires (500 units in this example) this will give the front tires more lateral grip (1034 units) than the rear tires (925 units), as shown in the calculations below, causing the car to have more steering during this left hand corner.\n\n|                               | Static | While Cornering                          |\n| ----------------------------- | ------ | ---------------------------------------- |\n| Car Weight                    | 2000   | 2000                                     |\n| Front weight distribution     | 50%    | 50%                                      |\n| Rear weight distribution      | 50%    | 50%                                      |\n| Front lateral weight transfer |        | <mark style=\"color:purple;\">200</mark>   |\n| Rear lateral weight transfer  |        | 500                                      |\n| **FRONT**                     |        |                                          |\n| FL vertical load              | 500    | <mark style=\"color:purple;\">400</mark>   |\n| FL laterial grip              | 521    | <mark style=\"color:purple;\">458</mark>   |\n| FR vertical load              | 500    | <mark style=\"color:purple;\">600</mark>   |\n| FR lateral grip               | 521    | <mark style=\"color:purple;\">576</mark>   |\n| Total front lateral grip      | 1042   | <mark style=\"color:purple;\">1034</mark>  |\n| Front tire grip efficiency    | 1.04   | <mark style=\"color:purple;\">1.034</mark> |\n| **REAR**                      |        |                                          |\n| RL vertical load              | 500    | 250                                      |\n| RL lateral grip               | 521    | 300                                      |\n| RR vertical load              | 500    | 750                                      |\n| RR lateral grip               | 521    | 625                                      |\n| Total rear grip               | 1042   | 925                                      |\n| Rear tire grip efficiency     | 1.04   | 0.925                                    |",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Weight Transfer - **Example of more oversteer through less front lateral weight transfer**",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "91aed227ee339d31",
+    "text": "Weight Transfer - Controlling lateral weight transfer through setups\n\nAll of the above information is interesting only if we can affect the amount of lateral weight transfer. So, let's look at how we can do that.\n\nLateral weight transfer is a function of the weight of the car, the lateral force, the location of the center of gravity and the track width, as shown in the following formula.\n\n*<mark style=\"color:red;\">Lateral Weight Transfer = (CarWeight x Lateral g's x CGHeight)/ Gravity x TrackWidth</mark>*\n\nWe can simplify this equation by assuming a lateral g of 1.0 which is equal to gravity, so the formula is now\\...\n\n*<mark style=\"color:red;\">LWT = (CarWeight x CGHeight)/ TrackWidth</mark>*\n\nFor example:\n\n*<mark style=\"color:red;\">LWT = (1500 Weight Units x 20 Distance Units) / 185 Distance Units = 162 Weight Units</mark>* of total lateral weight transfer assuming the car weights 1500 Weight Units and the CG is at 20 Distance Units above ground.\n\nIf we lower the CG 2 Distance Units\n\n*<mark style=\"color:red;\">LWT = (1500 Weight Units x 18 Distance Units) / 185 Distance Units = 145 Weight Units</mark>* of total lateral weight transfer.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Weight Transfer - Controlling lateral weight transfer through setups",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "2f4d6514171bddd6",
+    "text": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>\n\n<mark style=\"color:purple;\">This means that</mark> <mark style=\"color:purple;\"></mark>*<mark style=\"color:purple;\">raising the CG will provide more lateral weight transfer and thus less lateral grip</mark>*<mark style=\"color:purple;\">, while lowering the CG will provide less lateral weight transfer and thus more lateral grip.</mark>\n\n<mark style=\"color:purple;\">So, we can use the front and rear ride height of the car to raise or lower the CG, which affects lateral weight transfer and thus lateral grip. For example, if we raise the rear ride height this raises the cg of the car at the rear more than the front which increases the lateral weight transfer at the rear, which reduces the grip the tires can generate at the rear.</mark>\n\n<mark style=\"color:purple;\">Also keep in mind that the lower the ride height in general the lower the CG so you will want to run the lowest ride height you can both front and rear while still maintaining the balance you want and not bottoming out the suspension.</mark>",
+    "metadata": {
+      "phase": "general",
+      "symptom": "bottoming",
+      "component": "aero_rake",
+      "header": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "fd5228c5649b9733",
+    "text": "Weight Transfer - Swaybars effect on Lateral Weight Transfer\n\nSo, you may have been told that stiffer swaybars at the front of the car will reduce understeer, but you never understood why, and in fact it always felt counter intuitive to you because, well race cars have stiff swaybars compared to road cars so stiff swaybars must produce more grip right? Let me try to explain this to you and a\\`lso explain why race cars have stiff swaybars.\n\nAs you stiffen swaybars, you might conclude that it reduces the lateral weight transfer due to less body roll. However, because swaybars are designed to push up on the inside tire and down on the outside tire swaybars increase the difference in vertical load between the inside and outside tire, which will decrease the lateral grip.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "understeer",
+      "component": "arb",
+      "header": "Weight Transfer - Swaybars effect on Lateral Weight Transfer",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "0af0d31a99bfe127",
+    "text": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>\n\n<mark style=\"color:purple;\">A stiffer swaybar increases lateral weight transfer to that end of the car, which takes away lateral grip from that end of the car.</mark>\n\nSo why then do race cars have stiff swaybars. They do this to allow for quick direction changes and to have more consistent handling because it reduces the overall movement of the car.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "arb",
+      "header": "Weight Transfer - <mark style=\"color:purple;\">**Key Takeaway**</mark>",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "02ea18df00bca68c",
+    "text": "Weight Transfer - **Sometimes you get opposite results**\n\nLet me use an example of how you can get an opposite result from what I explained above. Let's assume you are at Road America and going through the kink in the Porsche 911 GT3R, and the car is getting too loose for you. Let's assume also that you are running a low wing, so you have a low rear ride height (i.e. less rake) to keep the car stable (see the Ride Height section for more on how lower rear ride height makes the car more stable). So you think hey I need to soften the rear swaybar to reduce the lateral weight transfer in the rear, so the rear has more grip. Go try it,...and you will likely find that if you soften the rear arb too much the rear of the car gets more loose. At this point you have lost all faith in what I am explaining here right ? :) Well with setups you can never just isolate things, as a setup is the sum of its parts. In this scenario by allowing the rear to roll too much you are losing aero grip in the rear because the rear outside gets too low and falls out of the optimal ride height range to maximize aero grip.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "aero_rake",
+      "header": "Weight Transfer - **Sometimes you get opposite results**",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "b5e78531de422683",
+    "text": "Weight Transfer - Roll Center effect on Lateral Weight Transfer\n\nNot many cars in iRacing allow you to control the Roll Center, but the V8 Supercars are one of them that does. Roll Center effect on lateral weight transfer to be honest is a very complicated and somewhat contradictory thing. The reason for this is that both a high RC and a low RC seem to contribute to increasing the lateral weight transfer for different reasons and it is very complex to figure out which approach transfers more lateral weight than the other.\n\nThe high RC increases lateral weight transfer to the outside tire because of it's tendency to resist the roll. In contrast the lower RC does not resist the roll as much, so you might think that it transfers less lateral weight transfer, but you need to consider the fact that as the car rolls intuitively this transfers more weight to the outside tires.\n\nIn the research I did, the additional weight transfer due to roll was dismissed in the lateral weight transfer calculations as insignificant, because in race cars that don't roll much anyway, it was said that the roll contributes less than 3% to the lateral weight transfer. This suggests that if your car is not rolling much due to other settings like swaybars etc, the lower the roll center the more lateral grip you will have because the lateral weight transfer will be less. However with softer suspensions and swaybars, you may find that a higher roll center will produce more lateral grip.\n\n***",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "arb",
+      "header": "Weight Transfer - Roll Center effect on Lateral Weight Transfer",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "24e2de59e9ecc1c0",
+    "text": "Weight Transfer - Driving Technique and how it affects Weight transfer and thus balance\n\nSo far, we have talked about how setups can affect weight transfer, so now let's discuss how your driving technique can be used to exploit weight transfer to get the balance you want.\n\nFor example, as you are braking you are transferring weight that was on the rear tires to the front tires, giving the front tires more relative grip than the rear tires, assuming you are not locking tires up. If you do let's say lock the front tires up or get into the abs on the front tires (micro locking) then you are not maximizing the grip to the front tires because firstly they are sliding too much which means they are not griping to their full potential, and because of this you can't transfer as much weight to the front tires further reducing the grip the front tires have. This is why if you trail brake too hard into the entry of a corner your car will push, and if you don't brake enough your car will push. There is a sweet spot to be found that optimizes the amount of front grip to achieve the balance in the car you desire all from trail braking.\n\n***",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "aero_rake",
+      "header": "Weight Transfer - Driving Technique and how it affects Weight transfer and thus balance",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "e377d0028fa48a99",
+    "text": "Weight Transfer - **So lets summarize**\n\n* Weight transfer is longitudinal and lateral and both affect car balance\n* Using lateral weight transfer to loosen the car means you need more lateral weight transfer across the rear tires relative to the front tires. This can be done by stiffening the rear swaybar/spring (or softening the front swaybar/spring) or raising the rear ride height (i.e more rake).\n* Using lateral weight transfer to make the car push more, you need more lateral weight transfer across the front tires relative to the rear. This can be done by stiffening the front sway bar (or softening the rear swaybar), or lowering the rear ride height.\n* Using Longitudinal weight transfer to loosen the car means transferring more weight to the front tires during trail braking/cornering. This can be done by finding the optimal trail braking so you maximize the weight transfer without locking up the tires or using ABS. You can also increase the rear ride height (i.e. increase the rake) or soften the front springs or stiffen the rear springs to gain slightly more weight transfer forward. The front springs have a bigger impact on trail braking and the rear springs have bigger impact on corner exit acceleration.\n* Using Longitudinal weight transfer to make the car push more, means transferring less weight to the front tires during braking/cornering. This can be done by braking too much causing the fronts to lock or get into ABS or by braking less to reduce the weight transfer. You can also decrease the rear ride height (i.e. decrease the rake) or stiffen the front springs or soften the rear springs to gain slightly more weight transfer forward. The front springs have a bigger impact on trail braking and the rear springs have bigger impact on corner exit acceleration.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "springs",
+      "header": "Weight Transfer - **So lets summarize**",
+      "source": "02-weight-transfer.md"
+    }
+  },
+  {
+    "id": "dab6cf7f3a43c521",
+    "text": "Cheat Sheet : Setup Changes for Oversteer and Understeer\n\nThe sections below explain the theory behind setup changes, but this section is just a handy list (or cheat sheet if you will) of what changes to make for understeer and oversteer.\n\nThere are many approaches you can take, and it may not always be clear what to start with, as it depends on so many things such as are you on corner entry or corner exist, on or off power.  If you are on corner entry off power then often changes at the front of the car are where to start as the impact of changes tends to be bigger.  If you at a corner exit on power then often changes at the rear of the car are where to start as the impact tends to be bigger.  However, these are not strict rules, and understanding the entire corner and how a change to affect corner entry does or does not affect mid corner or corner exit is how you can start to make your decisions. \n\nFor example, if I want a more stable initial corner entry but want more rotation in the middle to corner exit, reducing the rear camber can achieve all of this.  If makes the car more stable on that initial corner entry until the rear fully loads up at which point you start to get more rotation towards the middle of the corner and carry it through the exit.    So, the point is to think about how a change affects the entire corner.\n\n| Setting                            | Car has Oversteer | Car has Understeer |\n| ---------------------------------- | ----------------- | ------------------ |\n| Front Spring                       | Stiffen           | Soften             |\n| Rear Spring                        | Soften            | Stiffen            |\n| Front Swaybar                      | Stiffen           | Soften             |\n| Rear Swaybar                       | Soften            | Stiffen            |\n| Front Camber                       | Less Negative     | More Negative      |\n| Rear Camber                        | More Negative (1) | Less Negative      |\n| Front Ride Height                  | Raise             | Lower              |\n| Rear Ride Height                   | Lower             | Raise              |\n| Front Shocks Low Speed Compression | More Dampening    | Less Dampening     |\n| Front Shocks Low Speed Rebound     | Less Dampening    | More Dampening     |\n| Rear Shocks Low Speed Compression  | Less Dampening    | More Dampening     |\n| Rear Shocks Low Speed Rebound      | More Dampening    | Less Dampening     |\n| Front Toe out                      | Increase (2)      | Decrease           |\n| Rear Toe In                        | Increase          | Decrease           |\n\nFor the rear diff we need to break things down to when you are on or off power.\n\n| Setting           | Car has Oversteer Off Power | Car has Oversteer On Power | Car has understeer  Off Power | Car has understeer  On Power |\n| ----------------- | --------------------------- | -------------------------- | ----------------------------- | ---------------------------- |\n| Diff Preload      | Increase                    | Decrease                   | Decrease                      | Increase                     |\n| Diff Clutch Faces | Increase                    | Decrease                   | Decrease                      | Increase                     |\n| Cost Ramp Angle   | Increase                    | n/a                        | Decrease                      | n/a                          |\n| Drive Ramp Angle  | n/a                         | Decrease                   | n/a                           | Increase                     |\n\n* (1) For the rear camber, normally if the car is loose you will increase rear negative camber, however there are times, like at the early stages of corner entry before the car has reached its full lateral load where decreasing the camber can give you more grip. The cost will be that once you reach the full lateral load then the rear will become more loose.\n* (2) In general, the change listed above for Front Toe-Out works best, but you might go the opposite direction if you want to affect just that very initial turn-in. This is because more toe out will give you more very initial turn steering in but give you less steering through the remainder of the corner.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "dampers_low",
+      "header": "Cheat Sheet : Setup Changes for Oversteer and Understeer",
+      "source": "03-cheat-sheet-setup-changes-for-oversteer-and-understeer.md"
+    }
+  },
+  {
+    "id": "d1eacd25513fc705",
+    "text": "What to work on first?\n\nI often get the question, what do I start working on first, second and third etc, when creating a setup.  There are many ways to go about building a setup, but here are my guidelines for an approach that works well.   These are not hard and fast, but here is the order in which I would suggest you work on your setup.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "What to work on first?",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "c067a69fe8e941a9",
+    "text": "What to work on first? - Pick the wing first\n\n* Pick from the high, medium, or low downforce default iRacing setups based on the track.  Clearly tracks like Daytona, Monza or Lemans are going to be low downforce, while most tracks will be high downforce.  But there are tracks like Watkins that tend to be in the medium to high downforce range.   iRacing provides its own guidelines for which tracks are suited for which downforce configurations in the notes tab of their setups.\n* You may want to go up or down on the wing depending on the track.  Watkins is a good example where it might need to be between medium and high downforce.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "What to work on first? - Pick the wing first",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "899f93a56ac8d597",
+    "text": "What to work on first? - Experiment with rake to get balance in the ballpark:\n\n* Once you have selected the wing you feel is a good start, then start to play with the rake to get the balance you like.\n* If you have not changed the wing from the iRacing setup, then you won't want to change the rake much here, as the iRacing setups have a decent rake setting for the wing they have.  If however, you have changed the wing, for sure you will want to change the rake.  If you went up on the wing, then increase the rake, and if you went down on the wing then decrease the rake.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "What to work on first? - Experiment with rake to get balance in the ballpark:",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "d9003164551c416e",
+    "text": "What to work on first? - Experiment with the Spring Rates to fine tune the balance or handle bumps better:\n\n* To better handle bumps or curbs going a step or two softer might help, but the car will feel less consistent, so experiment.\n* Tune the spring rates by one or two clicks typically to adjust the balance to your liking.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_fast",
+      "header": "What to work on first? - Experiment with the Spring Rates to fine tune the balance or handle bumps better:",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "b19e896d021a6677",
+    "text": "What to work on first? - Experiment with the ARBs to further fine tune the balance\n\n* In general, you will want your ARBs front and rear to not be widely different....such as full stiff on the front and full soft or disconnected on the rear.\n* Most iRacing setups have a decent ARB starting point, so going up or down on the bars by one or two clicks is all you will need to fine tune the balance.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "arb",
+      "header": "What to work on first? - Experiment with the ARBs to further fine tune the balance",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "e6168f8afae374fc",
+    "text": "What to work on first? - Experiment with the rear differential to fine tune corner entry and exit balance\n\n* The rear differential is a power tuning aid and as such it could easily belong higher up the list. But if you are starting with an iRacing setup they tend to have neutral differential settings so that's why I put it later in the list of things to look at.\n* Spend some time on the diff to get the balance you like and do long runs to make sure you are not cooking the rear tires with your changes.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "diff",
+      "header": "What to work on first? - Experiment with the rear differential to fine tune corner entry and exit balance",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "d4b468457ac6c705",
+    "text": "What to work on first? - Experiment with the Shock Dampening to polish off the balance and handle bumps better\n\n* Dampeners have less impact on blance than springs, ARBs or differential, and as such are more for polishing the balance of the car.  However, they have a big impact on how your car handles  bumps and curbs.\n* I see so many setups with dampeners maxed out which is typically not a good thing to do.  There are cases this makes sense but typically these are edge cases.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "What to work on first? - Experiment with the Shock Dampening to polish off the balance and handle bumps better",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "22662d2fc4be3947",
+    "text": "What to work on first? - Experiment with toe - makes only minor differences\n\n* Honestly in 99% of the cases, the rear toe should be -1.5 per side.  If you want more stability or generate more tire heat then sure...move that up a little but, if you go with more toe in you might be compromising the rear tire life and masking other issues with your setup.\n* The front toe is something that is worthwhile changing, to impact how the car feels at the very initial turn in and middle of the corner.  This is the last thing you should fine tune as the impact is still relatively minor compared to the other setup changes listed above.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "What to work on first? - Experiment with toe - makes only minor differences",
+      "source": "04-what-to-work-on-first.md"
+    }
+  },
+  {
+    "id": "3f3a9a10be836a08",
+    "text": "Camber\n\nCamber is a measure of how much the tire leans toward the chassis. A wheel is said to have negative camber if the top of the wheel is leaning towards the chassis.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Camber",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "0d07630027a10c0f",
+    "text": "Camber - +ve Camber reduces lateral grip\n\nSo, what does camber do and what are the trade-offs? As shown in the image below, when a car with zero degrees camber is in a corner both tires will lean towards the outside of the corner as the car leans causing the tires to *reduce* the size of their *contact patch* with the driving surface. As a result of reducing the contact patch area traction is reduced as shown in the first two examples in the diagram below.",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Camber - +ve Camber reduces lateral grip",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "387c88e1de9afac9",
+    "text": "Camber - -ve camber (too a point) gives you more lateral grip\n\nIf we add the optimal amount of negative camber then as the car leans during cornering the *outside* tire will have the maximum contact patch and thus improve traction during cornering, as shown in the last example in the diagram above. By adding negative camber the inside tire does have less contact patch and thus less traction, however the increased grip on the outside more than compensates. This happens because the outside tire has a much higher vertical load than the inside tire. The greater the vertical load a tire has the more grip it has. On a road racing car, it is most important to optimize the contact patch of the outside tire. Now in oval car racing they will add positive camber to the inside wheels to further optimize the contact patch of the inside tire. They can get away with this because oval cars only turn one way.",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Camber - -ve camber (too a point) gives you more lateral grip",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "3adeaa5fec34ea01",
+    "text": "Camber - Too Much Negative Camber\n\nLike every setting discussed here, you can go too far. In other words, if you add too much negative camber you will actually reduce lateral grip. This happens because the tire never rolls over enough to offset the negative camber, which results in less than optimal contact patch.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Camber - Too Much Negative Camber",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "78842b9e6fe07264",
+    "text": "Camber - How to find the optimal camber\n\nFirst what does optimal mean in this context? It means that you are maximizing the utilization of the surface area of the tire. For example, you have too much camber and the tires are not using the outer half of the tire you will see the tire temperatures and tire wear on the inside of the tire be far higher than the middle and outside of the tire.\n\nThere is no precise way to guarantee you have the optimal camber, but you can approximate it by looking at the tire temperatures and tire wear on the inside and middle of the tire. The closer those two temperatures are to each other the in general, the more optimal your camber is. They will likely not be the same but if the temperatures are within a few degrees of each other and the tire wear after a full stint is within a few percentage points then you likely have the optimal camber. In general, the outside third of the tire will always have less temperature and tire wear than the middle and inside thirds of the tire.",
+    "metadata": {
+      "phase": "mid",
+      "symptom": "tire_wear",
+      "component": "camber_toe",
+      "header": "Camber - How to find the optimal camber",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "5282bcdd17256cc0",
+    "text": "Camber - More -ve Camber Reduces Braking and Acceleration grip\n\nWith negative camber, the tires lean in, so a smaller amount of the tire is in contact with the road surface (i.e. a smaller contact patch) when just going straight. The inside third (ish) of the tire is the only part of the tire in contact with the road. The more negative the camber the less contact patch you will have under braking and acceleration thus reducing the braking and acceleration grip you have.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Camber - More -ve Camber Reduces Braking and Acceleration grip",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "97decf99435c493d",
+    "text": "Camber - Controlling balance with rear Camber\n\nCamber is an immensely powerful setting option that has a dramatic effect on the balance of your car. I think by now you understand that if you decrease the negative camber in the rear of the car this will in general make the car loose. However, it is important to understand where in the corner this extra oversteer is likely to occur. The reduced negative camber in the rear will have the biggest impact on the rear losing grip when the car is at maximum lateral load because that is where the tire is likely not using enough of the inside of the tire due to the lateral force. However, at early stages of corner entry you will likely experience more rear grip, as that reduced static camber is likely allowing a larger contact patch at corner entry because the lateral load has not reached its maximum yet.\n\nSo, if you want to add stability on corner entry and free up the car at mid corner then reducing the rear Camber can work very well.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Camber - Controlling balance with rear Camber",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "567644ea73a996d9",
+    "text": "Camber - Controlling balance with front camber\n\nIn general, iRacing cars seem to do best with max or near max camber for most tracks. Having said that if you want to reduce the oversteer through the corner, reducing the front camber can help. The added benefit of reducing that front camber is that as mentioned above you will increase your braking performance as the tire will have a larger contact patch under braking.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Camber - Controlling balance with front camber",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "c213569173ccf3f4",
+    "text": "Camber - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to camber. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Camber - Handling Scenarios",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "3c00516e6b254c1b",
+    "text": "Camber - Loose off Power\n\n* Reduce negative camber at the front. This will have the bigger impact in an off power situation because you have transferred more weight to the front tires.\n* If loose mainly on corner entry and not mid corner then reduce negative camber at the rear.\n* If loose mainly at mid corner where the maximum lateral load is then increase rear negative camber. This is typically not when you are off power, but it depends on the corner.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Camber - Loose off Power",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "6071addb8aeaacc7",
+    "text": "Camber - Loose on Power\n\n* Increase rear negative camber. This will have a bigger impact in an on power situation because you have transferred more weight to the rear tires.\n* Reduce negative camber at the front.",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Camber - Loose on Power",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "67948c13e4565727",
+    "text": "Camber - Push off Power\n\n* Increase front negative camber. This will have a bigger impact in an off power situation because you have transferred more weight to the front tires.\n* If you push mainly on corner entry and not mid corner then increasing negative camber at the rear could help on the initial turn in but likely going to make things too pushy at the middle and exit.\n* If you push mainly after the initial turn in up to mid corner where the maximum lateral load is then decrease rear negative camber. In general, this tends to be the better way to go with respect to rear camber.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "camber_toe",
+      "header": "Camber - Push off Power",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "09593942a9bcfbab",
+    "text": "Camber - Push on Power\n\n* Reduce rear negative camber. This will have a bigger impact in an on power situation because you have transferred more weight to the rear tires.\n* Increase front negative camber.",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "camber_toe",
+      "header": "Camber - Push on Power",
+      "source": "05-setup-changes__camber.md"
+    }
+  },
+  {
+    "id": "b15474e404b59bc1",
+    "text": "Caster\n\nNot all cars on iRacing support caster changes. For example, the newer GT3 cars don't support this, while older GT3 cars do. It is a shame as caster can be a powerful tuning aid.\n\nThe biggest advantage of adding more caster is that you can run less static camber on your front wheels and thus gain some more braking power, because caster will dynamically increase your front camber when you turn the wheel.\n\nIf you were to draw a line through the two points (bottom and top) at which you attach the hub on your car this line defines the Caster of your car. The top attachment point is typically closer to the rear of the car than the bottom attachment point, giving you a line that leans towards the back of the car from bottom to top as shown in the following diagram.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Caster",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "52b443d9707d3b2b",
+    "text": "Caster - Caster helps the car Self Center\n\nThe more degrees of caster you run the more the car will self-center itself while driving in a straight line. This is because the side forces acting on the wheel have more leverage the further the wheel is behind the bottom connecting point (shown as the Trail Distance in the following figure) of the c-hub.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Caster - Caster helps the car Self Center",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "0876e97bfe70037f",
+    "text": "Caster - Caster changes the Camber Dynamically of the front wheels as your turn.\n\nAs you turn the front wheels during cornering the angle of the caster affects the angle of the camber dynamically. As you turn the front wheels, the caster causes the camber to increase negatively on the outside wheel and decrease on the inside wheel. In fact, the inside wheel often will end up with a positive camber. The greater the caster angle the greater the effect it has on the dynamic camber change. The more you turn the wheel the greater effect the caster has on the dynamic camber.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Caster - Caster changes the Camber Dynamically of the front wheels as your turn.",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "fea5f5aa3285a374",
+    "text": "Caster - How does it affect the handling\n\n*More caster typically increases mid corner steering:* This is because at mid corner the car has fully rolled into the corner allowing the dynamically increased negative camber to increase the contact patch size generating more lateral grip. However, too much caster is like having too much static negative camber, which can reduce grip because your tire goes past the optimal angle and actually reduces the contact patch,\n\n*More Caster also decreases initial turn-in:* This is because it decreases the contact patch on initial turn-in by adding some dynamic negative camber before the car has time to roll into the corner.\n\n*Improves Braking:* When you run caster you can reduce your front static negative camber, which keeps the front tires flatter and thus have a larger contact patch under braking. As indicated in the Camber section, most setups will run less front camber than the rear, because the caster adds negative camber as you turn the car.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Caster - How does it affect the handling",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "216217cc00a677c7",
+    "text": "Caster - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to caster. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Caster - Handling Scenarios",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "7d76775850c374c7",
+    "text": "Caster - Loose Off Power\n\n* reduce caster",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Caster - Loose Off Power",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "51057059daa478b1",
+    "text": "Caster - Loose On Power\n\n* reduce caster",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Caster - Loose On Power",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "5136a3bffb2f7d0f",
+    "text": "Caster - Push Off Power\n\n* Increase Caster",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "camber_toe",
+      "header": "Caster - Push Off Power",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "a1f2112c4a3f9a66",
+    "text": "Caster - Push On Power\n\n* increase caster",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "camber_toe",
+      "header": "Caster - Push On Power",
+      "source": "06-setup-changes__caster.md"
+    }
+  },
+  {
+    "id": "d469f1c78130968d",
+    "text": "Toe\n\nThe static toe of a car applies to both the front and rear suspension. As shown in the diagram below, the front tires have static toe-out and the rear tires have static toe-in when the distance *\"A\"* is longer than the distance *\"B\"*. The amount of static toe-out at the front and the amount of static toe-in at the rear have a dramatic effect on the balance of the car during cornering.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Toe",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "8f09cd1dacba5ec7",
+    "text": "Toe - Slip Angle\n\nBefore we can explain how toe affects handling, we need to understand the concept of slip angle and how that affects tire grip. Slip angle is the angle between the direction in which a wheel is pointing and the direction in which it is traveling.\n\nThe key point here is that tires will generate their maximum grip when they have some amount of slip angle. Different tires have different optimal slip angles to generate maximum grip, so experimenting with slip angle can help fine tune the grip you can achieve.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Toe - Slip Angle",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "8a88c5a304d7a59c",
+    "text": "Toe - Front Static Toe Impact on Handling\n\nSince we cannot change something called Ackermann in iRacing which would allow you to affect the front toe dynamically as you turn the wheel more, we are limited to just talking about using static toe.\n\nAs a general rule of thumb, the more front tire *toe-out* you run the more turn-in steering you will have and the less steering you will have mid corner to corner exit. It then follows that less front tire toe-out you run the less turn-in steering you will have and the more mid corner and corner exit steering you will have. Please keep in mind that since there is an optimal range if you go too far with your adjustments you will get the opposite results.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Toe - Front Static Toe Impact on Handling",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "1aa869dadbfee24e",
+    "text": "Toe - Rear Static Toe Impact on Handling\n\nThe *more rear tire toe-in you run the less steering your car will have*. Running static toe-in on the rear of the car the rear outside tire has a greater slip angle compared to no static rear toe-in. This gives the outer more grip due to the higher slip angle. Since the outside tires contribute significantly more to the lateral grip of your car, more rear toe makes the car have less steering.\n\nKeep in mind that the more rear toe in you run on your car, the larger the slip angle will be causing the rear tires to heat up more. *Too much heat in the rear tires may cause you to loose rear grip later in the race.*\n\nSince a tire has an optimal slip angle at a certain load on the tire to generate maximum grip *you should experiment with different rear toe-in depending on the tires* you are running to achieve the car balance you are looking for.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Toe - Rear Static Toe Impact on Handling",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "e7c76f1aa5430599",
+    "text": "Toe - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to the front and/or rear static toe. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "camber_toe",
+      "header": "Toe - Handling Scenarios",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "9a5ce087dffe96a0",
+    "text": "Toe - Loose Off power\n\n* Decrease the front toe-out for less steering at initial turn-in.\n* Increase the front toe-out for less steering after initial turn-in\n* Increase rear toe-in",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Toe - Loose Off power",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "1d375d0067188780",
+    "text": "Toe - Loose On Power\n\n* Increase the rear toe-in\n* Increase the front toe-out",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "camber_toe",
+      "header": "Toe - Loose On Power",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "83ad94fe2e693128",
+    "text": "Toe - Push Off Power\n\n* Increase the front toe-out for more steering at initial turn-in.\n* Decrease the front toe-out for more steering after initial turn-in\n* Decrease rear toe-in",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "camber_toe",
+      "header": "Toe - Push Off Power",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "b97708d07aeb05ba",
+    "text": "Toe - Push On Power\n\n* Decrease the rear toe-in\n* Decrease the front toe-out",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "camber_toe",
+      "header": "Toe - Push On Power",
+      "source": "07-setup-changes__toe.md"
+    }
+  },
+  {
+    "id": "a3bd3f1bb5d7f685",
+    "text": "Springs - Control car balance with springs\n\nSprings or spring rate if you prefer, have a dramatic effect on the balance of your setup because general the end of the car with the softer springs will have more grip than the end of the car with the harder springs.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Springs - Control car balance with springs",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "cb95c4a75e6cf1b9",
+    "text": "Springs - Front Springs\n\nAs you stiffen the front springs you will reduce oversteer and the car will feel like it responds more directly or more quickly to your steering inputs on initial turn in. Likewise, softening the front springs will increase oversteer of the car but it will feel slightly more lazy on initial turn in.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Springs - Front Springs",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "e388b2bffb47dbb6",
+    "text": "Springs - Rear Springs\n\nStiffer rear springs will increase oversteer, and softer rear springs will reduce oversteer. But as mentioned if you go too soft in the rear in combination with a rear ride heigh that is very low you might lose aero downforce in the rear which for high speed corners like the kink at Road America you could increase oversteer.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Springs - Rear Springs",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "17a4d15a8d653b2b",
+    "text": "Springs - Reduce Drag for high speed tracks\n\nFor high speed tracks like Daytona or Lemans having lower springs allows the aero downforce to push the car closer to the ground which will create less drag. But if you go too low to the ground you will lose downforce because there is an optimal ride height to create maximum downforce. So sometimes a stiffer spring with a lower ride height is the best option because the stiffer spring does a better job of reducing the ride height variance and thus keeps the car more in the optimal aero window. So as always it is about finding the optimal spring rate for the track and balance you are looking for.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "understeer",
+      "component": "aero_rake",
+      "header": "Springs - Reduce Drag for high speed tracks",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "04625e6c7ce14168",
+    "text": "Springs - Debunking myths about springs and weight transfer\n\nSpring rates do affect weight transfer but not in the way most think it does. This is important to understand so that you can make the proper decisions about having overall stiff or overall soft spring rates on your setup.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Springs - Debunking myths about springs and weight transfer",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "8087b13a87d351cf",
+    "text": "Springs - Myth - Softer springs all around allow more weight transfer\n\nThe amount of weight transfer front to rear or side to side on a car is the same if you had 1000 lbs springs at all four corners or 500 lb springs at all for corners. This may be counter intuitive, but it is true. Many will think the reason why increasing the front spring rate causes less oversteer, is because the car transfers less weight forward under trail braking. This is simply not the case. You are likely skeptical as I was when I first learned this but read on.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Springs - Myth - Softer springs all around allow more weight transfer",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "f0d3db8f853a06d9",
+    "text": "Springs - Truth - The difference in spring rates front to rear cause a difference in lateral weight transfer at each axle, which in turn affects car balance\n\nA car having 1000 units(lbs) springs all around will have the same lateral and longitudinal weight transfer as a car having 500 units(lbs) springs all around.  However, that has softer springs up front and harder springs in the rear will cause more lateral weight transfer at the rear and less lateral weight transfer at the front making the car oversteer more.  So, it is the difference in spring rates front to rear that causes this balance change.\n\n**The same spring rate front and rear have the same lateral weight transfer at each axle**\n\nLet's use some numbers to help illustrate the point. We will start by assuming the car has an equal static weight distribution front to rear and equal spring rates front and rear as follows:\n\n* Front Spring Rate: 1000 units\n* Rear Spring Rate: 1000 units\n\nIf we assume the car weighs 2000 units, that will mean each corner will have the same 500 units of vertical load on the tires.\n\n* FL: 500 units FR: 500 units\n* RL: 500 units RL: 500 units\n\nNow let's assume we are going through a right hand corner and this causes 250 units weight transfer from the inside tires to the outside tires increasing the difference between the vertical load of the two front tires to be 500 units, and the same 500 units for the rear, totaling 1000 units of of total weight transfer. This will make the vertical load on the tires look like this, which would not change if the spring rates were softer (for example 500 units springs).\n\n* FL: 750 units FL: 250 units\n* RL: 750 units RL: 250 units\n\n**Different front and rear spring rates, create different amounts of lateral weight transfer at each axle**\n\nIf we were to reduce the spring rate from 1000 units to 500 units at the front but kept the rears at 1000 units what happens to the weight transfer? So here are the new spring rates.\n\n* Front Spring Rate: 500 units\n* Rear Spring Rate: <mark style=\"color:red;\">1000</mark> units\n\nThe rear of the car will roll less and the front will roll more, and under braking the front will dive more, making the front CG (center of gravity) lower, effectively adding more rake, which in of itself will give the car more steering (see [ride height ](/learn-car-setup-for-iracing/setup-changes/ride-height.md)section). \n\nWhen the car starts to turn this causes the rear inside tire vertical load to reduce compared to before the spring rate change. You can think of it like the rear inside tire is now lifted off the ground more assuming a stiff chassis, even though in most cases you are not actually lifting the tire off the ground. But it helps illustrate the point that the inside rear tire has less vertical load. The outside rear tire now has more vertical load trtransferredrom the rear inside tire, causing a greater difference in vertical load between the rear tires, which reduces lateral grip at the rear of the car.\n\nIn contrast the front tires now have a more even vertical load difference between them adding more grip to the front tires, in addition to the additional grip given to the front from the change in rake.  All of this adds up to more grip at the front and less grip at the rear.\n\nSo now the vertical load distribution will look like this. Note that the total lateral weight distribution is still the same 1000 units, but now most of that has gone from the rear inside tire to the rear outside tire. In this example the front tire lateral weight transfer was decreased from 500 units to 300 units and rear tire lateral weight transfer was increased from 500 units to 700 units.  As mentioned above, the more weight transfer across an axel the less grip that axel will have.\n\n* FL: <mark style=\"color:red;\">650</mark> units FL: <mark style=\"color:red;\">350</mark> units\n* RL: <mark style=\"color:red;\">850</mark> units RL: <mark style=\"color:red;\">150</mark> units",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Springs - Truth - The difference in spring rates front to rear cause a difference in lateral weight transfer at each axle, which in turn affects car balance",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "b0ba418ceb307616",
+    "text": "Springs - Stiff suspension benefits\n\n* Reduces dynamic changes to toe because of reduced suspension travel\n* The car responds more quickly and consistently to your inputs\n* Allows you to reduce ride height for less drag but do a better job at keeping you in the aero downforce window\n* Allows your car to stay closer to the optimal ride height for optimal aero downforce",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Springs - Stiff suspension benefits",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "393afda683b42bf1",
+    "text": "Springs - Stiff suspension downsides\n\n* Tires don't stay in touch with the track surface as easily when you encounter bumps which can reduce grip\n* Car can be unsettled more by curb strikes causing unpredictable car balance\n* Tracks that have big changes in the banking in a short distance (think the Dipper or Forest Elbow at Bathurst)  can unsettle the car balance more than more compliant softer springs.\n\n<mark style=\"color:purple;\">**Key take away**</mark>\n\n<mark style=\"color:purple;\">Use the difference in spring rates between the front and rear to affect the balance of the car.</mark>\n\n<mark style=\"color:purple;\">In general a stiffer all around spring setup is best except for really bumpy tracks, or if you need to do a lot of curb strikes.</mark>\n\nFor example, Monza would likely benefit from softer springs because of there are some significant curb strikes to absorb. Also, softer springs can reduce drag as the car is lower. However, be careful as if you go too low in the rear due to soft springs and low ride heights you could lose too much rear end grip in the medium-high speed last corner. Sebring needs softer springs clearly because of the big bumps mainly in the last corner sunset.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Springs - Stiff suspension downsides",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "8704de959181d10a",
+    "text": "Springs - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to front and rear spring rates. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Springs - Handling Scenarios",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "3adb385678d010ec",
+    "text": "Springs - Loose Off Power\n\n* Increase front spring rate\n* Decrease rear spring rate",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Springs - Loose Off Power",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "2309126b92c5be30",
+    "text": "Springs - Loose On Power\n\n* Decrease rear spring rate\n* Increase front spring rate",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "springs",
+      "header": "Springs - Loose On Power",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "0e26c4ff9484a55e",
+    "text": "Springs - Push Off Power\n\n* Decrease front spring rate\n* Increase rear spring rate",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "springs",
+      "header": "Springs - Push Off Power",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "d0c22aaf3a998dfa",
+    "text": "Springs - Push On Power\n\n* Increase rear spring rate\n* Decrease front spring rate",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "springs",
+      "header": "Springs - Push On Power",
+      "source": "08-setup-changes__springs.md"
+    }
+  },
+  {
+    "id": "8d97b90924560432",
+    "text": "Shock Dampening - What is dampening?\n\nShock dampening helps control the rate at which a spring moves up and down. If shocks did not have any shock dampening the springs would react too quickly and continue to oscillate much longer causing the car to bounce, ultimately making the car very difficult and inconsistent to drive. The more dampening the slower there spring will move and the less dampening the faster the spring will move. So, the shocks help smooth things out for sure, but they also help you control the car balance as explained below.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Shock Dampening - What is dampening?",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "5e7c95ca9d2d549a",
+    "text": "Shock Dampening - Compression vs Rebound\n\nCompression is when the spring and shock get shorter in length and Rebound is when the shock and spring get longer in length.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Compression vs Rebound",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "4bbac8c58a44f799",
+    "text": "Shock Dampening - Low speed vs high speed dampening\n\nLow speed dampening refers to the amount of dampening the shock provides when the spring is moving up and down at a slow speed. The speed we are talking about here is not the speed of the car but the speed at which the spring/shock is moving up and down. This low speed compression happens for example when you are transitioning weight in the car through things like braking or cornering.\n\nHigh speed dampening refers to the amount of dampening the shock is providing when the spring is moving up and down at a fast speed. This often happens when you hit a bump or curb.\n\nAlthough the high speed dampening is only engaged when the spring velocity meets a certain threshold it is important to understand that the high speed dampening is then added to the low speed dampening when the shock velocity is above a threshold (1.5in/s in iRacing). In other words, the level of low speed dampening affects the level of high speed dampening. So, you can't treat them as completely separate from each other. For example, if the low speed dampening is set to 10 and the high speed dampening is set to 4 then when you are just doing normal transitions in cornering, braking or acceleration you are just using the 10 dampening but when you hit a curb or a bump you are using (10+4) 14 dampening.\n\nSo, tuning the low speed dampening affects the car in normal driving such as braking, cornering and Acceleration, while high speed dampening in general is tuned to add additional dampening for the curb strikes and bumps of a track.\n\nIt is best to keep your high speed compression and rebound settings about the same. For example, if you have too much HS compression and low HS rebound this can result in the suspension expanding too quickly after hitting a bump, and then landing on an overly stiff suspension. . If we look at the opposite scenario where the HS rebound is set really high and the HS compression is set really low, this can produce a suspension that does not return to the it's original state quickly enough (aka as a \"locked down suspension\"). Both of these examples produce very high load variation at the tire which as mentioned below will reduce mechanical grip.\n\nYou will need to explore to determine which HS dampening settings work best for the track you are on but in general the bumpier the track the more HS dampening you will want. If your HS dampening is too low the suspension will collapse too quickly and perhaps hit the track surface. If your HS dampening is too high then your suspension will not compress enough, and the car will just bounce off the bump instead of absorbing them bump.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Low speed vs high speed dampening",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "582f41d63eb6885f",
+    "text": "Shock Dampening - Load Variation\n\nLoad Variation (the cyclical change in load at the tire contact patch) is also something to keep in mind. A high load variation, meaning the tire cycles between very low and very high loads, is not good for maintaining mechanical grip or a consistent feel in the car. For this reason, you tend to not want to have really high or really low dampening in the car as either extreme can cause high load variations.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Load Variation",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "b8c27c6c25f76f87",
+    "text": "Shock Dampening - How do shocks affect car balance?\n\nSo, the shocks help smooth things out for sure, but they also help you control how fast the bump or rebound happens allowing them to control how fast weight is transferred, which affects the balance of the car.\n\nIf we have overall higher low speed dampening, then it will take longer for the springs to be compressed or extend. This does not change the amount of weight transfer, but it does change the rate of the weight transfer. It will take longer to transfer the weight but because the increased low speed dampening will add more roll resistance the weight transfer is greater sooner.\n\nSo if you slow down the weight transfer from the inside to the outside tires using more low speed dampening (both compression and rebound) at both the front and rear of the car then this will tend to make the car more consistent and also keep more grip at both ends of the car as it takes longer for the weight to transfer because the shocks are slowing down the rate at which the springs compress. It is also a more linear progression of the weight transfer, so the tires are not as abruptly hit with the extra load, which also helps them keep grip.\n\nSo what happens if we use less low speed compression at the front axle and more low speed compression at the rear axle? Since the front will get lower faster than the rear you will have more rake in the car during weight transfer transition which will cause more oversteer.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "dampers_low",
+      "header": "Shock Dampening - How do shocks affect car balance?",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "dbdf16521eb0d724",
+    "text": "Shock Dampening - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to front and rear dampeners. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Handling Scenarios",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "7aab478d58914cf9",
+    "text": "Shock Dampening - Loose Off Power\n\n* Increase front low speed compression\n* Decrease rear low speed compression\n* Decrease rear low speed rebound\n* Increase front low speed rebound",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Loose Off Power",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "7ad8f0d2214d334e",
+    "text": "Shock Dampening - Loose On Power\n\n* Decrease rear low speed compression\n* Decrease front low speed rebound\n* Increase front low speed compression",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Loose On Power",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "965d5e600aa745ef",
+    "text": "Shock Dampening - Push Off Power\n\n* Decrease front low speed compression\n* Increase rear low speed rebound\n* Increase rear low speed compression\n* Decrease front low speed rebound",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Push Off Power",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "40b0d247b52da475",
+    "text": "Shock Dampening - Push On Power\n\n* Increase rear low speed compression\n* Increase front low speed rebound\n* Decrease front low speed compression",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "dampers_low",
+      "header": "Shock Dampening - Push On Power",
+      "source": "09-setup-changes__shock-dampening.md"
+    }
+  },
+  {
+    "id": "b391800ef738089f",
+    "text": "Anti-Roll Bars (ARB)\n\nAnti-Roll bars or Swaybars are designed to reduce the amount the car leans/rolls which affects how fast the car reacts, and the overall feel. However, swaybars increase the difference in vertical load on the inside and outside tires, which actually reduces overall lateral grip.\n\nSo why use swaybars if they take away lateral grip?\n\n* Swaybars reduce chassis roll making the car feel more predictable and easier to drive.\n* Swaybars allow you to control the balance of the car by taking away grip from one end of the car.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB)",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "760443c96c4e9e97",
+    "text": "Anti-Roll Bars (ARB) - How does it work\n\nAs illustrated in the diagram below, as the car leans into the corner the swaybar connected to the outside tire's suspension arm, is pushed up causing the inside tire's suspension arm to be pushed up as well, making the car corner flatter yes, but more importantly *cause the outside tire to have more load than the inside tire.* Remember that the greater the difference in load between the outside tire and the inside tire, the less lateral grip those two tires will make. Let's understand this in more detail.\n\nThe Lateral grip for a tire increases with weight loading, but is not linear. Increasing load on a tire by 50% may only increase lateral grip by 30%. This represents a reduction of grip efficiency. That is, if you overload one tire by reducing load on the other tire (on the same axle), the total lateral grip is reduced.\n\nSince the stiffer the swaybar, the greater difference in load between the inside and outside tire, then it follows that a stiffer swaybar produces less lateral grip. This is based on the theory behind weight transfer, so if you want to learn more read the [Weight Transfer Section](/learn-car-setup-for-iracing/weight-transfer.md).",
+    "metadata": {
+      "phase": "general",
+      "symptom": "understeer",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB) - How does it work",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "dae2c153351565d4",
+    "text": "Anti-Roll Bars (ARB) - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to front and rear swaybars (ARB). You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB) - Handling Scenarios",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "1b5a586140763480",
+    "text": "Anti-Roll Bars (ARB) - Loose Off Power\n\n* Stiffer front ARB\n* Softer rear ARB",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB) - Loose Off Power",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "c43510795b1234f0",
+    "text": "Anti-Roll Bars (ARB) - Loose On Power\n\n* Stiffer front ARB\n* Softer rear ARB",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB) - Loose On Power",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "8b9c0ce3609819ee",
+    "text": "Anti-Roll Bars (ARB) - Push Off Power\n\n* Softer front ARB\n* Stiffer rear ARB",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB) - Push Off Power",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "f39765d10b14d3fa",
+    "text": "Anti-Roll Bars (ARB) - Push On Power\n\n* Softer front ARB\n* Stiffer rear ARB",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "arb",
+      "header": "Anti-Roll Bars (ARB) - Push On Power",
+      "source": "10-setup-changes__anti-roll-bars-arb.md"
+    }
+  },
+  {
+    "id": "f77003476f30326b",
+    "text": "Ride Height\n\nRide height is the distance the chassis sits above the ground. Changing ride height of the car is also another powerful way to control the car balance as it can affect the amount of aero downforce generated at both ends of the of the car and also impacts lateral weight transfer by changing the CG of the car.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Ride Height",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "0c30dbe7f079254d",
+    "text": "Ride Height - Ride Height effect on downforce and drag\n\nEach car in iRacing will have an optimal ride height at which it will generate the most downforce and a different lower ride height at which it will generate the least amount of drag. Often for each car iRacing will include these optimal ride height details in the default iRacing setups under the notes tab.\n\nOf course, your ride height will be very dynamic as you drive the car so keeping it within an optimal window for downforce and drag is a key element to car setup.\n\nFor tracks like Daytona or Lemans where top speed is more critical you will want to see how low you can go with the ride height without losing to much of the aero downforce in the corners.\n\nFor example, if you go too low on the rear ride height, you might end up losing rear grip in a high speed corner because the rear ride height is too low and outside an optimal aero downforce window reducing the rear downforce and thus rear grip.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Ride Height - Ride Height effect on downforce and drag",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "25dc7dc036ab5947",
+    "text": "Ride Height - Ride Height effect on lateral weight transfer and thus lateral grip\n\nAs discussed in the weight transfer section, as you raise the CG (Center of Gravity) of a car this will increase the lateral weight transfer of the car and cause it to lose lateral grip. So, if you want the car to have more oversteer then you can raise the rear ride height to reduce the lateral grip at the rear. Likewise, if you decrease the rear ride height you will increase the lateral grip at the rear, as long as you don't go too far and put the car out of the optimal aero downforce window.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "oversteer",
+      "component": "aero_rake",
+      "header": "Ride Height - Ride Height effect on lateral weight transfer and thus lateral grip",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "31414678b98856dd",
+    "text": "Ride Height - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to front and rear ride height. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Ride Height - Handling Scenarios",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "b3c9be992e449a79",
+    "text": "Ride Height - Loose Off Power\n\n* lower rear ride height\n* Increase front ride height",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "aero_rake",
+      "header": "Ride Height - Loose Off Power",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "4c5b84bf894c2bd8",
+    "text": "Ride Height - Loose On Power\n\n* lower rear ride height\n* Increase front ride height",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "aero_rake",
+      "header": "Ride Height - Loose On Power",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "64c83b4fcb1c8110",
+    "text": "Ride Height - Push Off Power\n\n* Increase rear ride height\n* Lower front ride height",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "aero_rake",
+      "header": "Ride Height - Push Off Power",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "04b6b181e41e0769",
+    "text": "Ride Height - Push On Power\n\n* Increase rear ride height\n* Lower front ride height",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "aero_rake",
+      "header": "Ride Height - Push On Power",
+      "source": "11-setup-changes__ride-height.md"
+    }
+  },
+  {
+    "id": "0f5123c11d9cfd64",
+    "text": "Differentials\n\nDifferentials are there to resist the inside and outside tire having vastly different rotating speeds. Some may refer to the amount of resistance as the amount of locking.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Differentials",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "292a6c6dd8221c62",
+    "text": "Differentials - Preload\n\nPreload is a measure of how much resistance against the inside and outside tires rotating at different speeds, independent of being on power or off power or neutral power.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Differentials - Preload",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "fee90a05ee9482c7",
+    "text": "Differentials - Friction Faces\n\nFriction faces have the effect of multiplying the amount of locking from a neutral power state to either being on or off the power. The more friction faces you have the more lock you will get on or off power in other words.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Differentials - Friction Faces",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "88151a2d41fe75a1",
+    "text": "Differentials - Coast/Power Ramp Angles\n\nThe ramp angle is the rate the locking ramps up either off power (i.e. coast) or on power (i.e. Drive). So, if you increase the \"drive ramp angle\" that will ramp up the locking faster as you start to engage more power. Likewise, if you decrease the \"coast ramp angle\" that will slow down the ramp up of locking when you start to get off the throttle.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Differentials - Coast/Power Ramp Angles",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "ad85a3d70a704f6d",
+    "text": "Differentials - How does more or less diff locking/resistance affect off power handling\n\nWhen entering a corner in an off power scenario, as you increase the amount of locking in the diff through preload friction faces or coast ramp angle, this will cause more understeer. In contrast of course if you decrease the locking of the diff you will allow for more oversteer when off power.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "diff",
+      "header": "Differentials - How does more or less diff locking/resistance affect off power handling",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "d59fb48dd39ec296",
+    "text": "Differentials - How does more or less diff locking/resistance affect On power handling\n\nThe on power scenario is exactly the opposite of the off power scenario when it comes to diffs. When exiting a corner in an on power scenario, as you increase the amount of locking in the diff through preload friction faces or coast ramp angle, this will cause more oversteer most of the time. It can cause an initial feeling of understeer but then most often will move to a snap oversteer, in contrast of course if you decrease the locking of the diff you will allow for more understeer when on power.",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "diff",
+      "header": "Differentials - How does more or less diff locking/resistance affect On power handling",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "ee293d17e7aacad3",
+    "text": "Differentials - Handling Scenarios\n\nIn each of the following scenarios, here are things you will help you improve the handling by making changes to the rear differential. You don't need to do all of the suggested changes listed below in these scenarios. It is best to start at the top of the list and do one at a time.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Differentials - Handling Scenarios",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "dacdcff9aa171a15",
+    "text": "Differentials - Loose Off Power\n\n* Increase Preload\n* Increase Friction Faces\n* Increase coast ramp angle",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "diff",
+      "header": "Differentials - Loose Off Power",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "421e6dc68a5028b6",
+    "text": "Differentials - Loose On Power\n\n* Decrease Preload\n* Decrease Friction Faces\n* Decrease drive  ramp angle",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "oversteer",
+      "component": "diff",
+      "header": "Differentials - Loose On Power",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "508a16502170f714",
+    "text": "Differentials - Push Off Power\n\n* Decrease Preload\n* Decrease Friction Faces\n* Decrease coast ramp angle",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "diff",
+      "header": "Differentials - Push Off Power",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "426ecef21d6c5a54",
+    "text": "Differentials - Push On Power\n\n* Increase Preload\n* Increase Friction Faces\n* Increase drive ramp angle",
+    "metadata": {
+      "phase": "exit",
+      "symptom": "understeer",
+      "component": "diff",
+      "header": "Differentials - Push On Power",
+      "source": "12-setup-changes__differentials.md"
+    }
+  },
+  {
+    "id": "29dd1b3d0da7b61e",
+    "text": "Brake Bias and Brake Cylinders - Brake Bias\n\nBrake bias is a straight forward adjustment that you likely already understand, but just for completeness I wanted to add this small section.  By decreasing the brake bias number in iRacing you are applying more braking force to the rear tires and less to the front tires.  By increasing the brake bias number, you are apply more braking force to the front tires than the rear tires. \n\nIf you apply more brake force to the rear tires (i.e. smaller bias number) then the car will oversteer more while trail braking and also will tend to have a slightly shorter braking distance.    If you apply more brake force to the front tires (ie. larger bias number) then the car will understeer more while trail braking and also tend to have a longer braking distance. \n\nHaving said that there have been some cars in iRacing where I have felt that moving the bias forward somehow gave the car more steering on trail braking, which did not really make sense and does not happen most of the time but try it out for the car you are driving to see what happens.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "brake_bias",
+      "header": "Brake Bias and Brake Cylinders - Brake Bias",
+      "source": "13-setup-changes__brake-bias-and-brake-cylinders.md"
+    }
+  },
+  {
+    "id": "3443aaaac2dd8b33",
+    "text": "Brake Bias and Brake Cylinders - Brake Cylinders\n\nLarger brake cylinders require more brake pedal pressure to achieve the same braking force, and can be used to tune how you are braking to be more in line with the brake threshold or abs engagement of the car (i.e. where the tires begin to lock). For example, if you are finding that you are hitting the abs or locking the tires easily try a larger brake cylinder as that requires more pedal pressure to achieve the  amount of braking force as a smaller brake cylinder. \n\nYou can also use different brake cylinder sizes front and rear to effectively change the brake bias and the brake ramp up differential front to rear.  For example, if you had a 50% brake bias with the same brake cylinder sizes front and rear and then went to a smaller rear brake cylinder this effectively moves the brake bias more rearward.  However, this is slightly different than just changing the brake bias, because of the rate at which the brake forces ramps up is now different front to rear, with the rear reaching a high brake force more quickly than the front.    In this example the car would have a more rear bias on trail braking but if you are near the abs threshold (on cars that have abs) the rear would engage abs at that limit before the front tires, giving the front tires more grip. \n\nIn general, I have not liked having different brake cylinder sizes front and rear as for me I feel it can create less predictable or at least less intuitive balance behaviours.   For me I like using the brake cylinder sizes to reduce or increase the overall braking sensitivity of the car.  For example, if I keep getting into the abs, I just go up one size on both the front and rear brake cylinders and that always helps me stay out of abs or reduce locking.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "brake_bias",
+      "header": "Brake Bias and Brake Cylinders - Brake Cylinders",
+      "source": "13-setup-changes__brake-bias-and-brake-cylinders.md"
+    }
+  },
+  {
+    "id": "db6b3bc9da533efb",
+    "text": "Brake Bias and Brake Cylinders - Handling Scenarios\n\nFor me I like using the brake bias for balance and the brake cylinder size for brake sensitivity and avoid using split cylinder sizes front to rear, but having said that here are the changes you can make to affect the car handling balance, but I have also added a section for reducing the tendency of getting into abs.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "brake_bias",
+      "header": "Brake Bias and Brake Cylinders - Handling Scenarios",
+      "source": "13-setup-changes__brake-bias-and-brake-cylinders.md"
+    }
+  },
+  {
+    "id": "7015c5e6e7f43be1",
+    "text": "Brake Bias and Brake Cylinders - Loose Off Power\n\n* Move brake bias forward\n* Increase rear brake cylinder size or decrease front bake cylinder size",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "brake_bias",
+      "header": "Brake Bias and Brake Cylinders - Loose Off Power",
+      "source": "13-setup-changes__brake-bias-and-brake-cylinders.md"
+    }
+  },
+  {
+    "id": "6020df5fae9512ba",
+    "text": "Brake Bias and Brake Cylinders - Push Off Power\n\n* Move brake bias rear\n* Decrease rear brake cylinder size or increase front brake clyinder size",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "understeer",
+      "component": "brake_bias",
+      "header": "Brake Bias and Brake Cylinders - Push Off Power",
+      "source": "13-setup-changes__brake-bias-and-brake-cylinders.md"
+    }
+  },
+  {
+    "id": "8f8d586384ea8d09",
+    "text": "Brake Bias and Brake Cylinders - Reduce locking or tendency of engaging abs\n\n* Increase brake cylinder size equally both front and rear.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "brake_bias",
+      "header": "Brake Bias and Brake Cylinders - Reduce locking or tendency of engaging abs",
+      "source": "13-setup-changes__brake-bias-and-brake-cylinders.md"
+    }
+  },
+  {
+    "id": "ea3a2845c9424820",
+    "text": "Pre-Race Prep\n\nIf you are looking for a check list of things to do before you do a race, here are my personal thoughts on what you can do to prepare for a race. Not everyone has the time to do all this granted but for the races that are more important to you this can be a decent way to prepare for the race.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Pre-Race Prep",
+      "source": "14-driving-technique__pre-race-prep.md"
+    }
+  },
+  {
+    "id": "eb99210c4bfc8796",
+    "text": "Pre-Race Prep - Start by learning the track\n\n* Starting with a paid setup is likely the best place to start.\n* Watch the lapping videos made by the pro that made the set to learn how they do it before do too many laps and learn bad habits.\n* If a new track, do about 10 laps first so I can understand the layout more which will tend to allow you to pickup more details from watching pro's videos.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Pre-Race Prep - Start by learning the track",
+      "source": "14-driving-technique__pre-race-prep.md"
+    }
+  },
+  {
+    "id": "df828a1fd08113c0",
+    "text": "Pre-Race Prep - Lapping Practice\n\n* Practice with race set first, at least 50 laps...but 200-400 for races you care more about.\n* Start off with doing 5 laps runs to decide which of the paid sets works best to pick the paid set that will be your baseline set.\n* Do full tank runs to know how the car feels at the end of the run and make driving technique and or setup changes as required.\n* For example, changing braking techniques to see what works best.\n  * Does braking earlier but softer give me more stability and high min corner speed and more pace in the long runs?\n  * Does trail braking with less pressure give me more off power steering (rotation) on corner entry?\n  * Does trail braking with more pressure give me more stability on corners where the rear is getting too loose on entry?\n* Experiment with different lines if an unfamiliar track.\n* In addition to driving technique, make setup changes as required to ensure you are quick over a full tank.\n* Join 3 to 5 different practice servers to see what the weather and track state variance will be and make sure you understand how to drive effectively in each.\n* Practice different driving techniques for different situations so you get the timing and brake points right.\n* Practice fuel saving technique for each corner to get your timing right.\n* Practice different lines into corners that simulate passes you are trying to make or defend from.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "diff",
+      "header": "Pre-Race Prep - Lapping Practice",
+      "source": "14-driving-technique__pre-race-prep.md"
+    }
+  },
+  {
+    "id": "78f21b3f6dca4163",
+    "text": "Pre-Race Prep - Qualifying Practice\n\n* Practice with qualifying set to ensure you understand how it may differ in balance from race set.\n* Try different speed out laps to see if they make a difference on the first or second lap of qualifying.\n* Current out lap approach that works for me.\n  * Full power down the straights with some very slow weaving.\n  * braking 100m early.\n  * Going through corners at approx 60% speed.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Pre-Race Prep - Qualifying Practice",
+      "source": "14-driving-technique__pre-race-prep.md"
+    }
+  },
+  {
+    "id": "087faa05e0af2831",
+    "text": "Pre-Race Prep - Practice Pits Stop\n\n* Practice pit lane entry brake timing and pressure.\n* Pit box entry braking.\n* Practice leaving pit box using the clutch.\n* I use pit limiter when I first enter pit lane but quickly turn off and over speed within the +1.3km/h limit. You should also practice using any pit limiter on entry to see if you can do that consistently and if that is faster.\n* I use pit limiter as I exit box.\n* I will turn pit limiter off after I leave pit box if long enough distance to pit exit.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Pre-Race Prep - Practice Pits Stop",
+      "source": "14-driving-technique__pre-race-prep.md"
+    }
+  },
+  {
+    "id": "45bb5ffa386bfeb4",
+    "text": "Braking\n\nBraking is considered to be the most important technique to master if you want to improve your lap times.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Braking",
+      "source": "15-driving-technique__braking.md"
+    }
+  },
+  {
+    "id": "eabf2ddaf988e2a0",
+    "text": "Braking - Braking Technique varies by car\n\nGT cars have a different braking technique compared to higher downforce cars like LMP cars during the very initial part of a braking zone when the speeds are high. High downforce cars like LMP allow you to use a higher brake pressure (even 100% brake pressure) in the initial braking zone without locking up the tires. In contrast a GT car will start to lock up tires if you go much beyond 85% brake pressure.\n\nAs you continue past the initial braking you will need to bleed off some pressure in the LMP whereas with the GT car you will tend to a constant pressure through the braking zone until you start the turn in. When you start the turn in you will need to decrease the braking in any car as you are now asking the tires to turn and brake, so the available grip for just braking will be reduced.",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "general",
+      "component": "aero_rake",
+      "header": "Braking - Braking Technique varies by car",
+      "source": "15-driving-technique__braking.md"
+    }
+  },
+  {
+    "id": "26121335fac15e8a",
+    "text": "Braking - Use Trail Braking to Control Car Balance\n\nTrail braking is when you are in the corner and have started your turn and continue to brake. This is one of the most important parts of braking because it greatly affects the balance of your car. Trail braking allows you to control the weight transfer and thus the balance of the car.\n\nThe more you brake (to a point) the more weight you will transfer to the front tires, which will give the front of the car more grip and the rear of the car less grip causing more oversteer. I say \"to a point\", because if you brake too much causing the front tires to lock or the front abs to engage then you will transfer less weight forward and also a locked tire will have less grip. Also, by locking the tires or engaging abs you are adding likely too much heat into the front tires further decrease front tires grip.\n\nSo, you will need to experiment with the amount of trail braking pressure you use to see how it affects the balance. It should be noted that your setup will impact how this works. A simple example of this is the brake bias you are using. If your bias is further forward then more brake pressure will cause understeer and if your brake bias is further rearward then more brake pressure will tend to cause oversteer. Again, assuming you are not locking the tires or into abs.\n\n<mark style=\"color:purple;\">**Key Takeaway**</mark>\n\n<mark style=\"color:purple;\">You need to experiment with increasing and decreasing brake pressure in the trail braking to see how that affects your car's balance, to find the optimal balance.</mark>\n\n<mark style=\"color:purple;\">Once you find a trail braking pressure that seems optimized for your corner, then during the race you can vary your brake pressure to deal with how the car is handling later in the race.</mark>\n\n* <mark style=\"color:purple;\">Trail braking with just a little less pressure (maybe 5%) can often produce more off power steering (rotation) on corner entry? This can be useful if your car has picked up a push through the race.</mark>\n* <mark style=\"color:purple;\">Trail braking with just a little more pressure (maybe 5%) can often provide more stability into the corner. This can be useful if you have started to overuse the rear tires and need to calm down the oversteer into a corner.</mark>",
+    "metadata": {
+      "phase": "entry",
+      "symptom": "oversteer",
+      "component": "aero_rake",
+      "header": "Braking - Use Trail Braking to Control Car Balance",
+      "source": "15-driving-technique__braking.md"
+    }
+  },
+  {
+    "id": "bb5b477eace07ef1",
+    "text": "FOV\n\nHere is a simple FOV calculator I made in google sheets.  The values are currently set for a 32 inch triple monitor, but if you want to modify for you specific monitors then you can access the actual spreadsheet [here ](https://docs.google.com/spreadsheets/d/1ZjP1nyIdkpgue6rNBKzN6w-oEYRrY5UOKsdcb_42I4Q/edit?usp=sharing)and then save a copy of it to allow you to edit it.\n\n{% embed url=\"<https://docs.google.com/spreadsheets/d/1ZjP1nyIdkpgue6rNBKzN6w-oEYRrY5UOKsdcb_42I4Q>\" %}",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "FOV",
+      "source": "16-tools__fov.md"
+    }
+  },
+  {
+    "id": "d1f7c94a27453cfe",
+    "text": "Team Endurance Race Planner\n\nI created a rather robust google sheet that allows you to plan your stints for team endurance races.  It factors in pit stop times, and even allows you to account for drivers having different pace. \n\nYou can access the sheet [here ](https://docs.google.com/spreadsheets/d/1Xm9K98l7GUxSIObEaLNvxV2FQB_2xNZ_omNA97hFCls/edit?usp=sharing)and then make a copy of it if you wish to edit and use the sheet.\n\n{% tabs %}\n{% tab title=\"View of Spreadsheet\" %}\n{% embed url=\"<https://docs.google.com/spreadsheets/d/1Xm9K98l7GUxSIObEaLNvxV2FQB_2xNZ_omNA97hFCls/edit?usp=sharing>\" %}\n{% endtab %}\n\n{% tab title=\"Instruction Video\" %}\n{% embed url=\"<https://youtu.be/w8kYAttcmE0?si=F6vH53CmSvpSgexE>\" %}\n{% endtab %}\n{% endtabs %}\n\nI also made a quick overview video of the spreadsheet to help you get started with how it works",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "diff",
+      "header": "Team Endurance Race Planner",
+      "source": "17-tools__team-endurance-race-planner.md"
+    }
+  },
+  {
+    "id": "e609a9a126246eb2",
+    "text": "Simucube Settings - Reconstruction filter\n\n* Higher reduces details but feels smoother.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Reconstruction filter",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "809c8329d87580ee",
+    "text": "Simucube Settings - Dampening\n\n* More reduces oscillation and softens the feeling.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Simucube Settings - Dampening",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "8e11c0e9b3cf3048",
+    "text": "Simucube Settings - Torque bandwidth limit\n\n* Lower numbers smooth out feel but you lose details.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Torque bandwidth limit",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "ecdb1f648f0fed58",
+    "text": "Simucube Settings - Friction\n\n* Constant torque is added to increase resistance of turning.\n* A higher number will add more friction - but harder to distinguish when the wheel loads up due to cornering.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Friction",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "471acc07e6f056a2",
+    "text": "Simucube Settings - Inertia\n\n* Higher numbers make the wheel keep moving in the direction it is moving.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Inertia",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "a62d17618c661a55",
+    "text": "Simucube Settings - Static force reduction\n\n* High number reduces force in sustained forces...like long corners.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Static force reduction",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "b901589ec22ce579",
+    "text": "Simucube Settings - Slew rate limit\n\n* It affects how fast the torque can change.\n* Lower numbers will smooth out feel but reduce detail.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Slew rate limit",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "13ca1239ddb009e8",
+    "text": "Simucube Settings - Ultra-low latency model\n\n* Reduces the latencies between wheel and pc.\n* Higher numbers can reduce wheel oscillating.\n* Using this can allow you to reduce dampening and friction and still reduce oscillation.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Simucube Settings - Ultra-low latency model",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "8729b2da2256f9c5",
+    "text": "Simucube Settings - Notch Filter\n\nFrom the research I did on notch filters I think it is likely best to just leave this off as it only really affects  a narrow frequency.  Having said that, here is what I have found doing my research on Notch Filters.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Notch Filter",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "6e4f8041cdf70ccb",
+    "text": "Simucube Settings - Quick Summary:\n\nturned off = less oscillation, smoother less notchy feeling\n\nTurned on = more oscillation and some inconsistent feelings...like a dead zone.\n\nCenter Freq: Lower numbers is less oscillation\n\nAttenuation dB : lower numbers is less oscillation\n\nQ Factor: lower numbers is less oscillation but less connected and more rubbery delayed feeling",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - Quick Summary:",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "91eed2deea2ab731",
+    "text": "Simucube Settings - More Details:\n\nPeak/notch filter is a filter that operates on frequency, so if your wheel tends to oscillate at a certain frequency if you let go of the wheel, you can make a notch on that frequency. Or if a certain rumble strip on the track is problematic and hits a resonance frequency that makes your whole rig vibrate at that frequency causing issues with your downstairs neighbours, then you can filter that out.\n\nThere is no best way… this filter is insanely hard to set, If you need it for oscillation control… Basically you have to set it while driving the car, Use a fairly deep attenuation and a reasonably wide range and then drive the car adjusting the frequency until it feels like you are reducing the area of the signal you want reduced… You can then narrow the Q factor to better pinpoint and adjust attenuation to where it just corrects rather than over cutting… One thing to note on this filter is that once set there will be a dip ANYTIME that frequency is used SO it can cause other issues in the way the FFB feels… i.e the feeling of a dead spot while turning through a corner… Or a lack of feel at certain times…",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "springs",
+      "header": "Simucube Settings - More Details:",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "41c5e46a9feb04ec",
+    "text": "Simucube Settings - Smooth out Feel\n\n* Lower slew rate limit - like 0.5 - 1.5. I think this is better than using a higher reconstruction filter as it does not affect response times, just smoothness.\n* High reconstruction filter like 5-6 - I think above 6 you lose too much detail.\n* Increase dampening but can feel slow to react if above 17%. 10% is a good baseline\n* Increase friction - 5-6%",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Simucube Settings - Smooth out Feel",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "652f6aff9ab7096f",
+    "text": "Simucube Settings - To add more detail\n\n* Lower reconstruction filter.\n* Reduce dampening.\n* Reduce friction - 3-4%. 4% is a good baseline\n* Reduce or turn off static force reduction. - I always have this off.\n* High or turn off slew rate limit.",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Simucube Settings - To add more detail",
+      "source": "18-tools__simucube-settings.md"
+    }
+  },
+  {
+    "id": "39a4bb27d621a559",
+    "text": "Simucube Settings - To reduce oscillation\n\n* Higher ultra low latency mode - like 20%.\n* Higher dampening - I think anything above 17% otherwise slows response too much.\n* Higher friction - don't go above 5% otherwise it is harder to feel the ffb in the corners.\n* Lower reconstruction filter - like 1-3.\n* Lower slew rate limit.\n\n###",
+    "metadata": {
+      "phase": "general",
+      "symptom": "general",
+      "component": "dampers_low",
+      "header": "Simucube Settings - To reduce oscillation",
+      "source": "18-tools__simucube-settings.md"
+    }
+  }
+]

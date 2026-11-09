@@ -168,14 +168,18 @@ def load_and_chunk_directory(docs_dir: Path | None = None) -> list[dict[str, Any
 
 
 def ingest_gitbook_to_vector_store(docs_dir: Path | None = None) -> int:
-    """Ingest all pre-scraped GitBook markdown chunks into the persistent vector store."""
+    """Ingest all pre-scraped GitBook markdown chunks into the persistent vector store and save chunks JSON."""
+    import json
     from rag.vector_store import get_vector_store
 
     target_dir = docs_dir or settings.gitbook_dir
     chunks = load_and_chunk_directory(target_dir)
+    chunks_json_path = target_dir.parent / "gitbook_chunks.json"
+    chunks_json_path.write_text(json.dumps(chunks, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
     store = get_vector_store()
     store.upsert_chunks(chunks)
-    logger.info("Ingested %d chunks into vector store.", len(chunks))
+    logger.info("Ingested %d chunks into vector store and wrote %s.", len(chunks), chunks_json_path)
     return len(chunks)
 
 
