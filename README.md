@@ -120,15 +120,12 @@ For every corner sector, the engine computes **15 deterministic physics checks &
      - If driving inputs are clean (`technique_fault_isolated: false`), sets `allow_setup_adjustments: true` and attaches targeted setup adjustments from the GitBook RAG.
 2. **`query_setup_guide(corner_phase: str, symptom: str, component: str = None)`**
    - Direct vector store RAG lookup for mechanical or aerodynamic setup adjustments.
-3. **Complete Garage 61 OpenAPI v1 Coverage (All 43 Endpoints)**:
-   - Every operation in the [Garage 61 OpenAPI v1 specification](https://garage61.net/api/openapi/v1.json) is exposed as a dedicated MCP tool (`g61_*`) and `Garage61Client` method:
-     - **Analyses**: `g61_find_analyses`, `g61_get_analysis`
+3. **Garage 61 OpenAPI v1 Coverage (16 Core Driving, Content & Team Read Endpoints)**:
+   - Core driving, catalog, user, and team read operations in the [Garage 61 OpenAPI v1 specification](https://garage61.net/api/openapi/v1.json) are exposed as dedicated MCP tools (`g61_*`) and `Garage61Client` methods:
      - **Catalog (`cars`, `car-groups`, `tracks`, `platforms`)**: `g61_find_car_groups`, `g61_find_cars`, `g61_find_tracks`, `g61_find_platforms`
      - **Events & Laps**: `g61_find_events`, `g61_get_event`, `g61_find_laps`, `g61_get_lap`, `g61_get_lap_csv`, `g61_get_lap_ghost`
-     - **Current User (`/me`)**: `g61_get_me`, `g61_get_accounts`, `g61_get_statistics`, `g61_create_user_data_pack_group`, `g61_delete_user_data_pack_group`, `g61_create_user_data_pack`, `g61_delete_user_data_pack`
-     - **Teams & Statistics**: `g61_find_teams`, `g61_get_team`, `g61_get_team_statistics`, `g61_create_team_invite`, `g61_delete_team_member`
-     - **Team Training Plans**: `g61_get_team_training_plans`, `g61_get_team_training_plan`
-     - **Team Data Packs & Data Pack Groups**: `g61_get_team_data_pack_groups`, `g61_get_team_data_pack_group`, `g61_create_data_pack_group_member`, `g61_delete_data_pack_group_member`, `g61_delete_data_pack_group_subscriber`, `g61_get_team_data_packs`, `g61_get_team_data_pack`, `g61_update_team_data_pack`, `g61_create_team_data_pack_content`, `g61_update_team_data_pack_content`, `g61_delete_team_data_pack_content`, `g61_get_team_data_pack_content_ghost_lap_bin`, `g61_get_team_data_pack_content_lap_csv`, `g61_move_team_data_pack_content`, `g61_get_team_data_pack_content_replay_bin`, `g61_get_team_data_pack_content_setup_sto`, `g61_delete_data_pack_subscriber`
+     - **Current User (`/me`)**: `g61_get_me`, `g61_get_accounts`, `g61_get_statistics`
+     - **Teams & Statistics**: `g61_find_teams`, `g61_get_team`, `g61_get_team_statistics`
 
 ### Claude Desktop Configuration (`claude_desktop_config.json`)
 

@@ -230,45 +230,20 @@ class Garage61Client:
         return normalize_telemetry_columns(df)
 
     # -------------------------------------------------------------------------
-    # Complete Garage 61 OpenAPI v1 Endpoints (all 43 operations)
+    # Garage 61 OpenAPI v1 Endpoints (16 Core Driving Data, Content, User & Team Endpoints)
     # -------------------------------------------------------------------------
 
-    # 1. GET /analyses (operationId: findAnalyses)
-    def find_analyses(
-        self,
-        types: list[str] | str | None = None,
-        trainingplan: str | None = None,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> dict[str, Any] | list[Any]:
-        """Analyses for current user (`GET /analyses`)."""
-        return self._request_json(
-            "GET",
-            "/analyses",
-            params={
-                "types": self._csv_param(types),
-                "trainingplan": trainingplan,
-                "limit": limit,
-                "offset": offset,
-            },
-        )
-
-    # 2. GET /analyses/{id} (operationId: getAnalysis)
-    def get_analysis(self, id: str) -> dict[str, Any] | list[Any]:
-        """Get analysis details (`GET /analyses/{id}`)."""
-        return self._request_json("GET", f"/analyses/{id}")
-
-    # 3. GET /car-groups (operationId: findCarGroups)
+    # 1. GET /car-groups (operationId: findCarGroups)
     def find_car_groups(self) -> dict[str, Any] | list[Any]:
         """Available car groups (`GET /car-groups`)."""
         return self._request_json("GET", "/car-groups")
 
-    # 4. GET /cars (operationId: findCars)
+    # 2. GET /cars (operationId: findCars)
     def find_cars(self) -> dict[str, Any] | list[Any]:
         """Available cars (`GET /cars`)."""
         return self._request_json("GET", "/cars")
 
-    # 5. GET /events (operationId: findEvents)
+    # 3. GET /events (operationId: findEvents)
     def find_events(
         self,
         platform: str | None = None,
@@ -300,12 +275,12 @@ class Garage61Client:
             },
         )
 
-    # 6. GET /events/{id} (operationId: getEvent)
+    # 4. GET /events/{id} (operationId: getEvent)
     def get_event(self, id: str) -> dict[str, Any] | list[Any]:
         """Get event details (`GET /events/{id}`)."""
         return self._request_json("GET", f"/events/{id}")
 
-    # 7. GET /laps (operationId: findLaps)
+    # 5. GET /laps (operationId: findLaps)
     def find_laps(
         self,
         tracks: list[int] | str | int | None = None,
@@ -421,27 +396,27 @@ class Garage61Client:
             },
         )
 
-    # 8. GET /laps/{id} (operationId: getLap)
+    # 6. GET /laps/{id} (operationId: getLap)
     def get_lap(self, id: str) -> dict[str, Any] | list[Any]:
         """Get information about a specific lap (`GET /laps/{id}`)."""
         return self._request_json("GET", f"/laps/{id}")
 
-    # 9. GET /laps/{id}/csv (operationId: getLapCSV)
+    # 7. GET /laps/{id}/csv (operationId: getLapCSV)
     def get_lap_csv(self, id: str) -> str:
         """Export the telemetry for a lap as a CSV file (`GET /laps/{id}/csv`)."""
         return self._request_text(f"/laps/{id}/csv", accept="text/csv, application/octet-stream, */*")
 
-    # 10. GET /laps/{id}/ghost.bin (operationId: getLapGhost)
+    # 8. GET /laps/{id}/ghost.bin (operationId: getLapGhost)
     def get_lap_ghost(self, id: str) -> bytes:
         """Download the ghost lap file for a lap (`GET /laps/{id}/ghost.bin`)."""
         return self._request_bytes(f"/laps/{id}/ghost.bin")
 
-    # 11. GET /me (operationId: me)
+    # 9. GET /me (operationId: me)
     def get_me(self) -> dict[str, Any] | list[Any]:
         """Information about the currently authenticated user (`GET /me`)."""
         return self._request_json("GET", "/me")
 
-    # 12. GET /me/accounts (operationId: getAccounts)
+    # 10. GET /me/accounts (operationId: getAccounts)
     def get_accounts(self, rating_history: bool | None = None) -> dict[str, Any] | list[Any]:
         """Get linked accounts for the current user (`GET /me/accounts`)."""
         return self._request_json(
@@ -450,27 +425,7 @@ class Garage61Client:
             params={"ratingHistory": rating_history},
         )
 
-    # 13. POST /me/datapackgroups (operationId: createUserDataPackGroup)
-    def create_user_data_pack_group(self, id: str) -> dict[str, Any] | list[Any]:
-        """Subscribe user to a data pack group (`POST /me/datapackgroups`)."""
-        return self._request_json("POST", "/me/datapackgroups", json_body={"id": id})
-
-    # 14. DELETE /me/datapackgroups/{id} (operationId: deleteUserDataPackGroup)
-    def delete_user_data_pack_group(self, id: str) -> dict[str, Any] | list[Any]:
-        """Unsubscribe user from a data pack group (`DELETE /me/datapackgroups/{id}`)."""
-        return self._request_json("DELETE", f"/me/datapackgroups/{id}")
-
-    # 15. POST /me/datapacks (operationId: createUserDataPack)
-    def create_user_data_pack(self, id: str) -> dict[str, Any] | list[Any]:
-        """Subscribe user to a data pack (`POST /me/datapacks`)."""
-        return self._request_json("POST", "/me/datapacks", json_body={"id": id})
-
-    # 16. DELETE /me/datapacks/{id} (operationId: deleteUserDataPack)
-    def delete_user_data_pack(self, id: str) -> dict[str, Any] | list[Any]:
-        """Unsubscribe user from a data pack (`DELETE /me/datapacks/{id}`)."""
-        return self._request_json("DELETE", f"/me/datapacks/{id}")
-
-    # 17. GET /me/statistics (operationId: getStatistics)
+    # 11. GET /me/statistics (operationId: getStatistics)
     def get_statistics(
         self,
         start: str | None = None,
@@ -490,254 +445,22 @@ class Garage61Client:
             },
         )
 
-    # 18. GET /platforms (operationId: findPlatforms)
+    # 12. GET /platforms (operationId: findPlatforms)
     def find_platforms(self) -> dict[str, Any] | list[Any]:
         """Available platforms (`GET /platforms`)."""
         return self._request_json("GET", "/platforms")
 
-    # 19. GET /teams (operationId: findTeams)
+    # 13. GET /teams (operationId: findTeams)
     def find_teams(self) -> dict[str, Any] | list[Any]:
         """Joined teams (`GET /teams`)."""
         return self._request_json("GET", "/teams")
 
-    # 20. GET /teams/{id} (operationId: getTeam)
+    # 14. GET /teams/{id} (operationId: getTeam)
     def get_team(self, id: str) -> dict[str, Any] | list[Any]:
         """Get information about a specific team (`GET /teams/{id}`)."""
         return self._request_json("GET", f"/teams/{id}")
 
-    # 21. GET /teams/{team}/datapackgroups (operationId: getTeamDataPackGroups)
-    def get_team_data_pack_groups(
-        self,
-        team: str,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> dict[str, Any] | list[Any]:
-        """Get data pack groups for a team (`GET /teams/{team}/datapackgroups`)."""
-        return self._request_json(
-            "GET",
-            f"/teams/{team}/datapackgroups",
-            params={"limit": limit, "offset": offset},
-        )
-
-    # 22. GET /teams/{team}/datapackgroups/{id} (operationId: getTeamDataPackGroup)
-    def get_team_data_pack_group(self, team: str, id: str) -> dict[str, Any] | list[Any]:
-        """Get data pack group for a team (`GET /teams/{team}/datapackgroups/{id}`)."""
-        return self._request_json("GET", f"/teams/{team}/datapackgroups/{id}")
-
-    # 23. POST /teams/{team}/datapackgroups/{id}/members (operationId: createDataPackGroupMember)
-    def create_data_pack_group_member(
-        self,
-        team: str,
-        id: str,
-        data_pack_id: str,
-    ) -> dict[str, Any] | list[Any]:
-        """Add data pack to a data pack group (`POST /teams/{team}/datapackgroups/{id}/members`)."""
-        return self._request_json(
-            "POST",
-            f"/teams/{team}/datapackgroups/{id}/members",
-            json_body={"id": data_pack_id},
-        )
-
-    # 24. DELETE /teams/{team}/datapackgroups/{id}/members/{member} (operationId: deleteDataPackGroupMember)
-    def delete_data_pack_group_member(
-        self,
-        team: str,
-        id: str,
-        member: str,
-    ) -> dict[str, Any] | list[Any]:
-        """Remove data pack from a data pack group (`DELETE /teams/{team}/datapackgroups/{id}/members/{member}`)."""
-        return self._request_json("DELETE", f"/teams/{team}/datapackgroups/{id}/members/{member}")
-
-    # 25. DELETE /teams/{team}/datapackgroups/{id}/subscribers/{subscriber} (operationId: deleteDataPackGroupSubscriber)
-    def delete_data_pack_group_subscriber(
-        self,
-        team: str,
-        id: str,
-        subscriber: str,
-    ) -> dict[str, Any] | list[Any]:
-        """Remove subscriber from a data pack group (`DELETE /teams/{team}/datapackgroups/{id}/subscribers/{subscriber}`)."""
-        return self._request_json(
-            "DELETE",
-            f"/teams/{team}/datapackgroups/{id}/subscribers/{subscriber}",
-        )
-
-    # 26. GET /teams/{team}/datapacks (operationId: getTeamDataPacks)
-    def get_team_data_packs(
-        self,
-        team: str,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> dict[str, Any] | list[Any]:
-        """Get data packs for a team (`GET /teams/{team}/datapacks`)."""
-        return self._request_json(
-            "GET",
-            f"/teams/{team}/datapacks",
-            params={"limit": limit, "offset": offset},
-        )
-
-    # 27. GET /teams/{team}/datapacks/{id} (operationId: getTeamDataPack)
-    def get_team_data_pack(self, team: str, id: str) -> dict[str, Any] | list[Any]:
-        """Get data pack for a team (`GET /teams/{team}/datapacks/{id}`)."""
-        return self._request_json("GET", f"/teams/{team}/datapacks/{id}")
-
-    # 28. POST /teams/{team}/datapacks/{id} (operationId: updateTeamDataPack)
-    def update_team_data_pack(
-        self,
-        team: str,
-        id: str,
-        name: str | None = None,
-        archived: bool | None = None,
-    ) -> dict[str, Any] | list[Any]:
-        """Update data pack for a team (`POST /teams/{team}/datapacks/{id}`)."""
-        body: dict[str, Any] = {}
-        if name is not None:
-            body["name"] = name
-        if archived is not None:
-            body["archived"] = archived
-        return self._request_json("POST", f"/teams/{team}/datapacks/{id}", json_body=body)
-
-    # 29. POST /teams/{team}/datapacks/{id}/content (operationId: createTeamDataPackContent)
-    def create_team_data_pack_content(
-        self,
-        team: str,
-        id: str,
-        video_url: str,
-        content_type: str = "video",
-        featured: bool = True,
-    ) -> dict[str, Any] | list[Any]:
-        """Add content to a data pack for a team (`POST /teams/{team}/datapacks/{id}/content`)."""
-        return self._request_json(
-            "POST",
-            f"/teams/{team}/datapacks/{id}/content",
-            json_body={
-                "type": content_type,
-                "videoUrl": video_url,
-                "featured": featured,
-            },
-        )
-
-    # 30. POST /teams/{team}/datapacks/{id}/content/{item} (operationId: updateTeamDataPackContent)
-    def update_team_data_pack_content(
-        self,
-        team: str,
-        id: str,
-        item: str,
-        video_url: str,
-        content_type: str = "video",
-    ) -> dict[str, Any] | list[Any]:
-        """Update data pack content for a team (`POST /teams/{team}/datapacks/{id}/content/{item}`)."""
-        return self._request_json(
-            "POST",
-            f"/teams/{team}/datapacks/{id}/content/{item}",
-            json_body={
-                "type": content_type,
-                "videoUrl": video_url,
-            },
-        )
-
-    # 31. DELETE /teams/{team}/datapacks/{id}/content/{item} (operationId: deleteTeamDataPackContent)
-    def delete_team_data_pack_content(
-        self,
-        team: str,
-        id: str,
-        item: str,
-    ) -> dict[str, Any] | list[Any]:
-        """Delete data pack content for a team (`DELETE /teams/{team}/datapacks/{id}/content/{item}`)."""
-        return self._request_json("DELETE", f"/teams/{team}/datapacks/{id}/content/{item}")
-
-    # 32. GET /teams/{team}/datapacks/{id}/content/{item}/ghost.bin (operationId: getTeamDataPackContentGhostLapBin)
-    def get_team_data_pack_content_ghost_lap_bin(
-        self,
-        team: str,
-        id: str,
-        item: str,
-    ) -> bytes:
-        """Download ghost lap file for a content item (`GET /teams/{team}/datapacks/{id}/content/{item}/ghost.bin`)."""
-        return self._request_bytes(f"/teams/{team}/datapacks/{id}/content/{item}/ghost.bin")
-
-    # 33. GET /teams/{team}/datapacks/{id}/content/{item}/lap.csv (operationId: getTeamDataPackContentLapCsv)
-    def get_team_data_pack_content_lap_csv(
-        self,
-        team: str,
-        id: str,
-        item: str,
-    ) -> str:
-        """Export telemetry for a lap content item (`GET /teams/{team}/datapacks/{id}/content/{item}/lap.csv`)."""
-        return self._request_text(
-            f"/teams/{team}/datapacks/{id}/content/{item}/lap.csv",
-            accept="text/csv, application/octet-stream, */*",
-        )
-
-    # 34. POST /teams/{team}/datapacks/{id}/content/{item}/move (operationId: moveTeamDataPackContent)
-    def move_team_data_pack_content(
-        self,
-        team: str,
-        id: str,
-        item: str,
-        position: int,
-    ) -> dict[str, Any] | list[Any]:
-        """Move data pack content for a team (`POST /teams/{team}/datapacks/{id}/content/{item}/move`)."""
-        return self._request_json(
-            "POST",
-            f"/teams/{team}/datapacks/{id}/content/{item}/move",
-            json_body={"position": position},
-        )
-
-    # 35. GET /teams/{team}/datapacks/{id}/content/{item}/replay.bin (operationId: getTeamDataPackContentReplayBin)
-    def get_team_data_pack_content_replay_bin(
-        self,
-        team: str,
-        id: str,
-        item: str,
-    ) -> bytes:
-        """Download file for a replay content item (`GET /teams/{team}/datapacks/{id}/content/{item}/replay.bin`)."""
-        return self._request_bytes(f"/teams/{team}/datapacks/{id}/content/{item}/replay.bin")
-
-    # 36. GET /teams/{team}/datapacks/{id}/content/{item}/setup.sto (operationId: getTeamDataPackContentSetupSto)
-    def get_team_data_pack_content_setup_sto(
-        self,
-        team: str,
-        id: str,
-        item: str,
-    ) -> bytes:
-        """Download iRacing setup for a setup content item (`GET /teams/{team}/datapacks/{id}/content/{item}/setup.sto`)."""
-        return self._request_bytes(f"/teams/{team}/datapacks/{id}/content/{item}/setup.sto")
-
-    # 37. DELETE /teams/{team}/datapacks/{id}/subscribers/{subscriber} (operationId: deleteDataPackSubscriber)
-    def delete_data_pack_subscriber(
-        self,
-        team: str,
-        id: str,
-        subscriber: str,
-    ) -> dict[str, Any] | list[Any]:
-        """Remove subscriber from a data pack (`DELETE /teams/{team}/datapacks/{id}/subscribers/{subscriber}`)."""
-        return self._request_json("DELETE", f"/teams/{team}/datapacks/{id}/subscribers/{subscriber}")
-
-    # 38. POST /teams/{team}/invites (operationId: createTeamInvite)
-    def create_team_invite(
-        self,
-        team: str,
-        name: str,
-        max_usages: int = 0,
-        expires_after: int = 0,
-    ) -> dict[str, Any] | list[Any]:
-        """Create team invite (`POST /teams/{team}/invites`)."""
-        return self._request_json(
-            "POST",
-            f"/teams/{team}/invites",
-            json_body={
-                "name": name,
-                "maxUsages": max_usages,
-                "expiresAfter": expires_after,
-            },
-        )
-
-    # 39. DELETE /teams/{team}/members/{id} (operationId: deleteTeamMember)
-    def delete_team_member(self, team: str, id: str) -> dict[str, Any] | list[Any]:
-        """Remove member from team (`DELETE /teams/{team}/members/{id}`)."""
-        return self._request_json("DELETE", f"/teams/{team}/members/{id}")
-
-    # 40. GET /teams/{team}/statistics (operationId: getTeamStatistics)
+    # 15. GET /teams/{team}/statistics (operationId: getTeamStatistics)
     def get_team_statistics(
         self,
         team: str,
@@ -758,26 +481,7 @@ class Garage61Client:
             },
         )
 
-    # 41. GET /teams/{team}/trainingplans (operationId: getTeamTrainingPlans)
-    def get_team_training_plans(
-        self,
-        team: str,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> dict[str, Any] | list[Any]:
-        """Get training plans for a team (`GET /teams/{team}/trainingplans`)."""
-        return self._request_json(
-            "GET",
-            f"/teams/{team}/trainingplans",
-            params={"limit": limit, "offset": offset},
-        )
-
-    # 42. GET /teams/{team}/trainingplans/{id} (operationId: getTeamTrainingPlan)
-    def get_team_training_plan(self, team: str, id: str) -> dict[str, Any] | list[Any]:
-        """Get training plan for a team (`GET /teams/{team}/trainingplans/{id}`)."""
-        return self._request_json("GET", f"/teams/{team}/trainingplans/{id}")
-
-    # 43. GET /tracks (operationId: findTracks)
+    # 16. GET /tracks (operationId: findTracks)
     def find_tracks(self) -> dict[str, Any] | list[Any]:
         """Available tracks (`GET /tracks`)."""
         return self._request_json("GET", "/tracks")

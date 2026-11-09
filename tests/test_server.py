@@ -151,8 +151,8 @@ def test_fastmcp_server_name() -> None:
     assert mcp.name == "iracing-setup-engineer"
 
 
-def test_all_43_garage61_openapi_endpoints_and_mcp_tools() -> None:
-    """Verify every one of the 43 Garage 61 OpenAPI v1 operations is implemented and exposed as an MCP tool."""
+def test_garage61_scoped_openapi_endpoints_and_mcp_tools() -> None:
+    """Verify the 16 in-scope Garage 61 OpenAPI v1 operations are implemented and out-of-scope endpoints are removed."""
     mock_session = MagicMock()
 
     def make_json_resp(status_code: int = 200, payload: dict | None = None, text: str = '{"ok": true}') -> MagicMock:
@@ -164,25 +164,19 @@ def test_all_43_garage61_openapi_endpoints_and_mcp_tools() -> None:
         return r
 
     mock_session.get.return_value = make_json_resp(200, {"items": []}, "col1,col2\n1,2\n")
-    mock_session.post.return_value = make_json_resp(201, {"created": True}, "")
-    mock_session.delete.return_value = make_json_resp(204, None, "")
 
     client = Garage61Client(api_key="unit_test_key", session=mock_session)
 
     with patch("mcp_server.server.Garage61Client", return_value=client):
-        # 1. GET /analyses
-        assert server.g61_find_analyses(types=["lap", "sector"], trainingplan="tp1", limit=10, offset=0) == {"items": []}
-        # 2. GET /analyses/{id}
-        assert server.g61_get_analysis(id="an_1") == {"items": []}
-        # 3. GET /car-groups
+        # 1. GET /car-groups
         assert server.g61_find_car_groups() == {"items": []}
-        # 4. GET /cars
+        # 2. GET /cars
         assert server.g61_find_cars() == {"items": []}
-        # 5. GET /events
+        # 3. GET /events
         assert server.g61_find_events(platform="iracing", car=153, track=498, limit=5) == {"items": []}
-        # 6. GET /events/{id}
+        # 4. GET /events/{id}
         assert server.g61_get_event(id="ev_1") == {"items": []}
-        # 7. GET /laps
+        # 5. GET /laps
         assert server.g61_find_laps(
             tracks=[498],
             cars=[153, -4],
@@ -192,88 +186,69 @@ def test_all_43_garage61_openapi_endpoints_and_mcp_tools() -> None:
             group="driver",
             limit=50,
         ) == {"items": []}
-        # 8. GET /laps/{id}
+        # 6. GET /laps/{id}
         assert server.g61_get_lap(id="lap_1") == {"items": []}
-        # 9. GET /laps/{id}/csv
+        # 7. GET /laps/{id}/csv
         assert "col1,col2" in server.g61_get_lap_csv(id="lap_1")
-        # 10. GET /laps/{id}/ghost.bin
+        # 8. GET /laps/{id}/ghost.bin
         ghost = server.g61_get_lap_ghost(id="lap_1")
         assert ghost["lap_id"] == "lap_1"
         assert ghost["size_bytes"] == 4
-        # 11. GET /me
+        # 9. GET /me
         assert server.g61_get_me() == {"items": []}
-        # 12. GET /me/accounts
+        # 10. GET /me/accounts
         assert server.g61_get_accounts(rating_history=True) == {"items": []}
-        # 13. POST /me/datapackgroups
-        assert server.g61_create_user_data_pack_group(id="dpg_1")["status_code"] == 201
-        # 14. DELETE /me/datapackgroups/{id}
-        assert server.g61_delete_user_data_pack_group(id="dpg_1")["status_code"] == 204
-        # 15. POST /me/datapacks
-        assert server.g61_create_user_data_pack(id="dp_1")["status_code"] == 201
-        # 16. DELETE /me/datapacks/{id}
-        assert server.g61_delete_user_data_pack(id="dp_1")["status_code"] == 204
-        # 17. GET /me/statistics
+        # 11. GET /me/statistics
         assert server.g61_get_statistics(cars=[153], tracks=[498]) == {"items": []}
-        # 18. GET /platforms
+        # 12. GET /platforms
         assert server.g61_find_platforms() == {"items": []}
-        # 19. GET /teams
+        # 13. GET /teams
         assert server.g61_find_teams() == {"items": []}
-        # 20. GET /teams/{id}
+        # 14. GET /teams/{id}
         assert server.g61_get_team(id="team_1") == {"items": []}
-        # 21. GET /teams/{team}/datapackgroups
-        assert server.g61_get_team_data_pack_groups(team="team_1", limit=10) == {"items": []}
-        # 22. GET /teams/{team}/datapackgroups/{id}
-        assert server.g61_get_team_data_pack_group(team="team_1", id="dpg_1") == {"items": []}
-        # 23. POST /teams/{team}/datapackgroups/{id}/members
-        assert server.g61_create_data_pack_group_member(team="team_1", id="dpg_1", data_pack_id="dp_1")["status_code"] == 201
-        # 24. DELETE /teams/{team}/datapackgroups/{id}/members/{member}
-        assert server.g61_delete_data_pack_group_member(team="team_1", id="dpg_1", member="dp_1")["status_code"] == 204
-        # 25. DELETE /teams/{team}/datapackgroups/{id}/subscribers/{subscriber}
-        assert server.g61_delete_data_pack_group_subscriber(team="team_1", id="dpg_1", subscriber="usr_1")["status_code"] == 204
-        # 26. GET /teams/{team}/datapacks
-        assert server.g61_get_team_data_packs(team="team_1", limit=10) == {"items": []}
-        # 27. GET /teams/{team}/datapacks/{id}
-        assert server.g61_get_team_data_pack(team="team_1", id="dp_1") == {"items": []}
-        # 28. POST /teams/{team}/datapacks/{id}
-        assert server.g61_update_team_data_pack(team="team_1", id="dp_1", name="Week 1", archived=False)["status_code"] == 201
-        # 29. POST /teams/{team}/datapacks/{id}/content
-        assert server.g61_create_team_data_pack_content(team="team_1", id="dp_1", video_url="https://youtu.be/xyz")["status_code"] == 201
-        # 30. POST /teams/{team}/datapacks/{id}/content/{item}
-        assert server.g61_update_team_data_pack_content(team="team_1", id="dp_1", item="item_1", video_url="https://youtu.be/abc")["status_code"] == 201
-        # 31. DELETE /teams/{team}/datapacks/{id}/content/{item}
-        assert server.g61_delete_team_data_pack_content(team="team_1", id="dp_1", item="item_1")["status_code"] == 204
-        # 32. GET /teams/{team}/datapacks/{id}/content/{item}/ghost.bin
-        dp_ghost = server.g61_get_team_data_pack_content_ghost_lap_bin(team="team_1", id="dp_1", item="item_1")
-        assert dp_ghost["size_bytes"] == 4
-        # 33. GET /teams/{team}/datapacks/{id}/content/{item}/lap.csv
-        assert "col1,col2" in server.g61_get_team_data_pack_content_lap_csv(team="team_1", id="dp_1", item="item_1")
-        # 34. POST /teams/{team}/datapacks/{id}/content/{item}/move
-        assert server.g61_move_team_data_pack_content(team="team_1", id="dp_1", item="item_1", position=1)["status_code"] == 201
-        # 35. GET /teams/{team}/datapacks/{id}/content/{item}/replay.bin
-        dp_replay = server.g61_get_team_data_pack_content_replay_bin(team="team_1", id="dp_1", item="item_1")
-        assert dp_replay["size_bytes"] == 4
-        # 36. GET /teams/{team}/datapacks/{id}/content/{item}/setup.sto
-        dp_setup = server.g61_get_team_data_pack_content_setup_sto(team="team_1", id="dp_1", item="item_1")
-        assert dp_setup["size_bytes"] == 4
-        # 37. DELETE /teams/{team}/datapacks/{id}/subscribers/{subscriber}
-        assert server.g61_delete_data_pack_subscriber(team="team_1", id="dp_1", subscriber="usr_1")["status_code"] == 204
-        # 38. POST /teams/{team}/invites
-        assert server.g61_create_team_invite(team="team_1", name="New Driver Invite", max_usages=5, expires_after=3600)["status_code"] == 201
-        # 39. DELETE /teams/{team}/members/{id}
-        assert server.g61_delete_team_member(team="team_1", id="usr_1")["status_code"] == 204
-        # 40. GET /teams/{team}/statistics
+        # 15. GET /teams/{team}/statistics
         assert server.g61_get_team_statistics(team="team_1", cars=[153], tracks=[498]) == {"items": []}
-        # 41. GET /teams/{team}/trainingplans
-        assert server.g61_get_team_training_plans(team="team_1", limit=10) == {"items": []}
-        # 42. GET /teams/{team}/trainingplans/{id}
-        assert server.g61_get_team_training_plan(team="team_1", id="tp_1") == {"items": []}
-        # 43. GET /tracks
+        # 16. GET /tracks
         assert server.g61_find_tracks() == {"items": []}
 
-    # Verify total calls across all 43 endpoints:
-    # 28 GET calls + 8 POST calls + 7 DELETE calls = 43 calls
-    assert mock_session.get.call_count == 28
-    assert mock_session.post.call_count == 8
-    assert mock_session.delete.call_count == 7
+    # Verify total calls across all 16 in-scope GET endpoints:
+    assert mock_session.get.call_count == 16
+
+    # Verify out-of-scope endpoints (analyses, datapacks_subscriptions, team_datapacks_*,
+    # team_trainingplans_read, team_members) are removed from both server and client:
+    removed_tools = [
+        "g61_find_analyses",
+        "g61_get_analysis",
+        "g61_create_user_data_pack_group",
+        "g61_delete_user_data_pack_group",
+        "g61_create_user_data_pack",
+        "g61_delete_user_data_pack",
+        "g61_get_team_data_pack_groups",
+        "g61_get_team_data_pack_group",
+        "g61_create_data_pack_group_member",
+        "g61_delete_data_pack_group_member",
+        "g61_delete_data_pack_group_subscriber",
+        "g61_get_team_data_packs",
+        "g61_get_team_data_pack",
+        "g61_update_team_data_pack",
+        "g61_create_team_data_pack_content",
+        "g61_update_team_data_pack_content",
+        "g61_delete_team_data_pack_content",
+        "g61_get_team_data_pack_content_ghost_lap_bin",
+        "g61_get_team_data_pack_content_lap_csv",
+        "g61_move_team_data_pack_content",
+        "g61_get_team_data_pack_content_replay_bin",
+        "g61_get_team_data_pack_content_setup_sto",
+        "g61_delete_data_pack_subscriber",
+        "g61_create_team_invite",
+        "g61_delete_team_member",
+        "g61_get_team_training_plans",
+        "g61_get_team_training_plan",
+    ]
+    for tool_name in removed_tools:
+        assert not hasattr(server, tool_name), f"{tool_name} should be removed from server"
+        method_name = tool_name.removeprefix("g61_")
+        assert not hasattr(client, method_name), f"{method_name} should be removed from Garage61Client"
+
 
 
